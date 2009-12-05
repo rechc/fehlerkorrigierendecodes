@@ -26,11 +26,26 @@ public class Blockcodes {
 	 * @param zahl
 	 * @return
 	 */
-	//hab beim Suchen diese Methode gefunden und wollte die mal testen. 
-	//Wir wollen ja eigentlich keinen String zurueck
-	private String dezToBin(int zahl) {
+	//kein Plan ob wir nach einer besseren Lösung suchen sollten. Siehe hierzu auch Methode <code>string2Vektor</code>
+	private String dez2Bin(int zahl) {
 		//System.out.println(Integer.toBinaryString(zahl));
 		return Integer.toBinaryString(zahl);
+	}
+	
+	/**
+	 * Methode welche einen binäre Zahle (gespeichert als String) 
+	 * in ein Array speichert
+	 * @param binZahl
+	 * @return
+	 */
+	// siehe Methode <code>dez2Bin</code>
+	private int[] string2Vektor(String binZahl) {
+		int [] vektor = new int[binZahl.length()];
+		
+		for (int i = 0; i < binZahl.length(); i++)
+			vektor[i] = (int) binZahl.charAt(i);
+	
+		return vektor; 
 	}
 	
 	
