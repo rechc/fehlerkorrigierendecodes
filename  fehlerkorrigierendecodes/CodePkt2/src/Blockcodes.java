@@ -21,6 +21,11 @@ public class Blockcodes {
 	}
 	
 	
+	public void nachrichtenwoerter() {
+			
+
+	}
+	
 	/**
 	 * Methode um eine Dezimalzahl in einen binären String umzuwandeln
 	 * @param zahl
