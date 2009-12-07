@@ -5,9 +5,12 @@ import java.awt.ScrollPane;
 import java.awt.Scrollbar;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.peer.PanelPeer;
 
+import javax.swing.ButtonGroup;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JRadioButton;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
@@ -15,7 +18,8 @@ import javax.swing.JTextField;
 public class Window extends JFrame implements ActionListener{
 
 	private final static String TITEL = "Fehlerkorrigierende Codes";
-	private JTextArea jtaOutput;
+	//private JTextArea jtaOutput;
+	//private DefaultButton dbExecute;
 
 	
 	public Window() {
@@ -29,21 +33,70 @@ public class Window extends JFrame implements ActionListener{
 		setSize(600, 600);	
 	}
 	
-	private void textArea(int x, int y) {
-		jtaOutput = new JTextArea();
+	private ScrollPane textArea(int x, int y) {
+		JTextArea jtaOutput = new JTextArea();
 		jtaOutput.setLineWrap(true);
 		jtaOutput.setWrapStyleWord(true);
 		jtaOutput.add(new Scrollbar());
 		ScrollPane sc = new ScrollPane();
 		sc.setSize(x, y);
 		sc.add(jtaOutput);
-		add(sc);
+		return sc;
 	}
 	
-	private void createSurface(){
-		textArea(100,90);
-		//add(panel);
-		//pack();
+	private DefaultButton button(String name) {
+		DefaultButton dbButton = new DefaultButton(name, getRootPane());
+		dbButton.addActionListener(this);
+		
+		return dbButton;
+	}
+	
+	private Panel panel() {
+		Panel panel = new Panel();
+		panel.setLayout(new GridLayout(3,2));
+			panel.add(button("calc"));
+		
+		return panel;
+	}
+	
+	private JRadioButton radioButton(String name, boolean selected, char keyEvent) {
+	    JRadioButton defaultButton = new JRadioButton(name);
+	    defaultButton.setMnemonic(keyEvent);
+	    defaultButton.setActionCommand(name);
+	    defaultButton.setSelected(selected);
+	  
+	    //Register a listener for the radio buttons.
+	    defaultButton.addActionListener(this);
+	    
+		return defaultButton;
+
+
+	}
+	
+	private void createSurface(){		
+		add(textArea(110,85));
+		add(panel());
+		
+		JRadioButton aButton = radioButton("option1",true, 'a');
+		JRadioButton bButton = radioButton("option2",false, 'b');
+		JRadioButton cButton = radioButton("option3",false, 'c');
+		
+	    //Group the radio buttons.
+	    ButtonGroup group = new ButtonGroup();
+	    group.add(aButton);
+	    group.add(bButton);
+	    group.add(cButton);
+	    
+		//Display radio buttons
+		getContentPane().setLayout(new FlowLayout());
+		getContentPane().add(aButton);
+		getContentPane().add(bButton);
+		getContentPane().add(cButton);
+		setSize(250,100);
+		setTitle("Swing Radio Buttons");
+		setVisible(true);
+
+
 	}
 
 	@Override
@@ -54,9 +107,9 @@ public class Window extends JFrame implements ActionListener{
 				System.out.println("fehlt noch");
 				//jtaOutput.setText(Blockcodes.methodenname);
 			}catch(IllegalArgumentException e){
-				jtaOutput.setText("ERROR: " + e.getMessage());
+				//jtaOutput.setText("ERROR: " + e.getMessage());
 			}catch(Exception e){
-				jtaOutput.setText("WRONG INPUT");
+				//jtaOutput.setText("WRONG INPUT");
 				e.printStackTrace();
 			}
 		}
