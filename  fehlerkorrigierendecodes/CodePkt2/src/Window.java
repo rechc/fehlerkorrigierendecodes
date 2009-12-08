@@ -1,3 +1,4 @@
+import java.awt.Component;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.Panel;
@@ -64,6 +65,7 @@ public class Window extends JFrame implements ActionListener{
 		Panel panel = new Panel();
 		panel.setLayout(new GridLayout(3,2));
 			panel.add(button("calc"));
+			panel.add(button("reset"));
 		
 		return panel;
 	}
@@ -79,31 +81,46 @@ public class Window extends JFrame implements ActionListener{
 	    
 		return defaultButton;
 
+	}
+	
+	private void buttonGroup(JRadioButton[] buttons) {
+		ButtonGroup group = new ButtonGroup();
+		
+		for (int i = 0; i < buttons.length; i++)
+			group.add(buttons[i]);
 
 	}
+	
+	private void contentPane(JRadioButton[] buttons) {
+		getContentPane().setLayout(new FlowLayout());
+		
+		for (int i = 0; i < buttons.length; i++)
+			getContentPane().add(buttons[i]);
+
+		setSize(250,100);
+		setTitle("Swing Radio Buttons");
+		setVisible(true);
+	}
+	
 	
 	private void createSurface(){		
 		add(textArea(110,85));
 		add(panel());
 		
+		//Create radio buttons (buttonname, selected, tastenkuerzel)
 		JRadioButton aButton = radioButton("option1",true, 'a');
 		JRadioButton bButton = radioButton("option2",false, 'b');
 		JRadioButton cButton = radioButton("option3",false, 'c');
 		
-	    //Group the radio buttons.
-	    ButtonGroup group = new ButtonGroup();
-	    group.add(aButton);
-	    group.add(bButton);
-	    group.add(cButton);
+		//buttons in array
+		JRadioButton buttons[] = {aButton, bButton, cButton};
+		
+		//Group radio buttons
+		buttonGroup(buttons);
 	    
 		//Display radio buttons
-		getContentPane().setLayout(new FlowLayout());
-		getContentPane().add(aButton);
-		getContentPane().add(bButton);
-		getContentPane().add(cButton);
-		setSize(250,100);
-		setTitle("Swing Radio Buttons");
-		setVisible(true);
+		contentPane(buttons);
+
 
 
 	}
