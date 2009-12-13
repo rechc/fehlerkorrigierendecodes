@@ -4,16 +4,24 @@
  */
 package fehlercodesclasses;
 
+import javax.xml.crypto.dsig.Transform;
+
 /**
  *
  * @author tim
  */
 public class BitMatOps {
 
+   private static boolean[][] matrix;
+   private static final int ROWS = matrix.length;        // Konstante fuer Anzahl Reihen
+   private static final int COLUMNS = matrix[0].length;  // Konstante fuer Anzahl Spalten
+
+
     public static boolean[] multiply(boolean[] vector, boolean[][] matrix) {
         if (vector.length != matrix.length) {
             throw new IllegalArgumentException();
         }
+
         boolean[] resVec = new boolean[matrix[0].length];
         for (int i = 0; i < matrix[0].length; i++) {
             for (int j = 0; j < matrix.length; j++) {
@@ -22,6 +30,21 @@ public class BitMatOps {
         }
         return resVec;
     }
+
+    /**
+     * Methode um eine Matix zu transponieren
+     * @param matrix
+     * @return transponierte Matrix
+     */
+   private boolean[][] transponieren(boolean[][] matrix){
+       boolean [][] t_matrix = new boolean [COLUMNS][ROWS];
+       for (int i = 0; i < ROWS; i++) {
+         for (int j=0; j<COLUMNS; j++) {
+	    t_matrix[j][i] = matrix[i][j];
+	 }
+      }
+       return t_matrix;
+   }
 
     public static String getString(boolean[] vector) {
         StringBuffer sb = new StringBuffer("(");
