@@ -8,7 +8,7 @@ import javax.xml.crypto.dsig.Transform;
 
 /**
  *
- * @author tim
+ * @author Tim Bartsch, Christian Rech
  */
 public class BitMatOps {
 
@@ -44,6 +44,34 @@ public class BitMatOps {
           }
        return t_matrix;
    }
+
+   /**
+    * Matrix mit Matrix multiplizieren
+    *
+    * ANGENOMMEN WIR ARBEITEN MIT EINER KLASSE Matrix
+    *
+    * @param a
+    * @param b
+    * @return ergebnis Matrix
+    */
+   public static Matrix matmult(Matrix a, Matrix b) {
+    int l = a.getRowDim();
+    int n = b.getRowDim();
+    int m = a.getColumnDim();
+
+    Matrix ergMatrix = new Matrix(n, m);
+
+    for (int i = 0; i < m; i++) {
+      for (int j = 0; j < n; j++) {
+        for (int k = 0; k < l; k++) {
+          ergMatrix.arr[i][j] ^= a.arr[i][k] && b.arr[k][j];
+        }
+      }
+    }
+    
+    return ergMatrix;
+  }
+
 
     public static String getString(boolean[] vector) {
         StringBuffer sb = new StringBuffer("(");
