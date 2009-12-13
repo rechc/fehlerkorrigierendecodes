@@ -12,11 +12,6 @@ import javax.xml.crypto.dsig.Transform;
  */
 public class BitMatOps {
 
-   private static boolean[][] matrix;
-   private static final int ROWS = matrix.length;        // Konstante fuer Anzahl Reihen
-   private static final int COLUMNS = matrix[0].length;  // Konstante fuer Anzahl Spalten
-
-
     public static boolean[] multiply(boolean[] vector, boolean[][] matrix) {
         if (vector.length != matrix.length) {
             throw new IllegalArgumentException();
@@ -36,13 +31,17 @@ public class BitMatOps {
      * @param matrix
      * @return transponierte Matrix
      */
-   private boolean[][] transponieren(boolean[][] matrix){
-       boolean [][] t_matrix = new boolean [COLUMNS][ROWS];
-       for (int i = 0; i < ROWS; i++) {
-         for (int j=0; j<COLUMNS; j++) {
-	    t_matrix[j][i] = matrix[i][j];
-	 }
-      }
+   private static boolean[][] transponieren(boolean[][] matrix){
+       
+        int ROWS = matrix.length;        // Konstante fuer Anzahl Reihen
+        int COLUMNS = matrix[0].length;  // Konstante fuer Anzahl Spalten
+
+           boolean [][] t_matrix = new boolean [COLUMNS][ROWS];
+           for (int i = 0; i < ROWS; i++) {
+             for (int j = 0; j < COLUMNS; j++) {
+                t_matrix[j][i] = matrix[i][j];
+             }
+          }
        return t_matrix;
    }
 
