@@ -12,7 +12,7 @@ import java.util.LinkedList;
  */
 public class BitMatrix2D {
 
-    private boolean[][] matrix;
+    private boolean matrix[][];
     private int ROWS;
     private int COLUMNS;
     //int HEMMINGDISTANCE;
@@ -59,6 +59,10 @@ public class BitMatrix2D {
         this.COLUMNS = m;
         this.ROWS = n;
         this.matrix = new boolean[n][m];
+
+         for (int i = 0; i < m; i++) 
+             for (int j = 0; j < n; j++) 
+                matrix[i][j] = false;
     }
 
     public BitMatrix2D(int bitLength) {
@@ -91,6 +95,9 @@ public class BitMatrix2D {
         int m = this.getCOLUMNS();
 
         BitMatrix2D resMatrix = new BitMatrix2D(this.ROWS, this.COLUMNS);
+        
+        //warum geht das nicht????
+        resMatrix[0][0] = false;
 
         for (int i = 0; i < m; i++)
           for (int j = 0; j < n; j++)
