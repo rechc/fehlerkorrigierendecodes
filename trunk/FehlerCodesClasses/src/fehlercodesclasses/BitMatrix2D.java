@@ -95,14 +95,11 @@ public class BitMatrix2D {
         int m = this.getCOLUMNS();
 
         BitMatrix2D resMatrix = new BitMatrix2D(this.ROWS, this.COLUMNS);
-        
-        //warum geht das nicht????
-        resMatrix[0][0] = false;
 
         for (int i = 0; i < m; i++)
           for (int j = 0; j < n; j++)
             for (int k = 0; k < l; k++)
-              resMatrix[i][j] ^= this.matrix[i][k] && multiMatrix[k][j];
+              resMatrix.matrix[i][j] ^= this.matrix[i][k] && multiMatrix[k][j];
 
           return resMatrix;
     }
@@ -120,7 +117,7 @@ public class BitMatrix2D {
            BitMatrix2D t_matrix = new BitMatrix2D(this.ROWS, this.COLUMNS);
            for (int i = 0; i < ROWS; i++) {
              for (int j = 0; j < COLUMNS; j++) {
-                t_matrix[j][i] = this.matrix[i][j];
+                t_matrix.matrix[j][i] = this.matrix[i][j];
              }
           }
        return t_matrix;
