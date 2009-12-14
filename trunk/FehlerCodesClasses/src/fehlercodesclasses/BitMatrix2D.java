@@ -12,7 +12,7 @@ import java.util.LinkedList;
  */
 public class BitMatrix2D {
 
-    private boolean matrix[][];
+    private boolean array[][];
     private int ROWS;
     private int COLUMNS;
     //int HEMMINGDISTANCE;
@@ -46,10 +46,10 @@ public class BitMatrix2D {
             rowList.add(createBinVector(row));
         }
         this.ROWS = rowList.size();
-        this.matrix = new boolean[ROWS][1];
+        this.array = new boolean[ROWS][1];
         int i = 0;
         for (boolean[] vector : rowList) {
-            this.matrix[i] = vector;
+            this.array[i] = vector;
             i++;
         }
     }
@@ -58,20 +58,20 @@ public class BitMatrix2D {
     public BitMatrix2D(int n, int m){
         this.COLUMNS = m;
         this.ROWS = n;
-        this.matrix = new boolean[n][m];
+        this.array = new boolean[n][m];
 
          for (int i = 0; i < m; i++) 
              for (int j = 0; j < n; j++) 
-                matrix[i][j] = false;
+                array[i][j] = false;
     }
 
     public BitMatrix2D(int bitLength) {
         ROWS = (int)Math.pow(2, bitLength);
         COLUMNS = bitLength;
-        this.matrix = new boolean[ROWS][COLUMNS];
+        this.array = new boolean[ROWS][COLUMNS];
         boolean[] vector = new boolean[COLUMNS];
         for(int i=0; i<ROWS; i++){
-            this.matrix[i] = vector.clone();
+            this.array[i] = vector.clone();
             vector = incVector(vector);
         }
     }
@@ -99,7 +99,7 @@ public class BitMatrix2D {
         for (int i = 0; i < m; i++)
           for (int j = 0; j < n; j++)
             for (int k = 0; k < l; k++)
-              resMatrix.matrix[i][j] ^= this.matrix[i][k] && multiMatrix[k][j];
+              resMatrix.array[i][j] ^= this.array[i][k] && multiMatrix.array[k][j];
 
           return resMatrix;
     }
@@ -117,7 +117,7 @@ public class BitMatrix2D {
            BitMatrix2D t_matrix = new BitMatrix2D(this.ROWS, this.COLUMNS);
            for (int i = 0; i < ROWS; i++) {
              for (int j = 0; j < COLUMNS; j++) {
-                t_matrix.matrix[j][i] = this.matrix[i][j];
+                t_matrix.array[j][i] = this.array[i][j];
              }
           }
        return t_matrix;
@@ -142,7 +142,7 @@ public class BitMatrix2D {
         StringBuffer sb = new StringBuffer();
         for (int i = 0; i < ROWS; i++) {
             for (int j = 0; j < COLUMNS; j++) {
-                if (matrix[i][j]) {
+                if (array[i][j]) {
                     sb.append("1,");
                 } else {
                     sb.append("0,");
