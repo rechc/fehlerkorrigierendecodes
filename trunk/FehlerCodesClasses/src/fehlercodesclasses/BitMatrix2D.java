@@ -98,7 +98,6 @@ public class BitMatrix2D {
               resMatrix[i][j] ^= this.matrix[i][k] && multiMatrix[k][j];
 
           return resMatrix;
-
     }
 
     public BitMatrix2D concat(BitMatrix2D m){
