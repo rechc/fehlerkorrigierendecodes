@@ -8,14 +8,16 @@ import java.util.LinkedList;
 
 /**
  *
- * @author tim
+ * @author Tim Bartsch, Christian Rech
  */
 public class BitMatrix2D {
 
+    //Attribute
     private boolean array[][];
     private int ROWS;
     private int COLUMNS;
     //int HEMMINGDISTANCE;
+
     /**
      * Nimmt strings mit folgendem schema:
      * 101          1,0,1
@@ -54,7 +56,12 @@ public class BitMatrix2D {
         }
     }
 
-
+    /**
+     * Erstellt Matrix in Dimension n*m
+     * und füllt alle Felder mit false
+     * @param n
+     * @param m
+     */
     public BitMatrix2D(int n, int m){
         this.COLUMNS = m;
         this.ROWS = n;
@@ -65,6 +72,10 @@ public class BitMatrix2D {
                 array[i][j] = false;
     }
 
+    /**
+     * Bildet Einheitsmatrix
+     * @param bitLength
+     */
     public BitMatrix2D(int bitLength) {
         ROWS = (int)Math.pow(2, bitLength);
         COLUMNS = bitLength;
@@ -76,6 +87,11 @@ public class BitMatrix2D {
         }
     }
 
+    /**
+     * Erstellt einen binaeren Vektor
+     * @param binVector
+     * @return
+     */
     private boolean[] createBinVector(String binVector) {
         binVector = binVector.trim();
         boolean[] returnVec = new boolean[binVector.length()];
@@ -89,12 +105,17 @@ public class BitMatrix2D {
         return returnVec;
     }
 
+    /**
+     * Multipliziert Matrix mit einer anderen
+     * @param multiMatrix
+     * @return
+     */
     public BitMatrix2D multiplyWith(BitMatrix2D multiMatrix) {
         int l = this.getROWS();
         int n = multiMatrix.getROWS();
         int m = this.getCOLUMNS();
 
-        BitMatrix2D resMatrix = new BitMatrix2D(this.ROWS, this.COLUMNS);
+        BitMatrix2D resMatrix = new BitMatrix2D(n, m);
 
         for (int i = 0; i < m; i++)
           for (int j = 0; j < n; j++)
@@ -104,8 +125,22 @@ public class BitMatrix2D {
           return resMatrix;
     }
 
-    public BitMatrix2D concat(BitMatrix2D m){
-        return null;
+    /**
+     * Setzt zwei Matrizen zusammen
+     * @param m
+     * @return
+     */
+    public BitMatrix2D concat(BitMatrix2D m2){
+        int n = m2.getROWS();
+        int m = this.getCOLUMNS() + this.COLUMNS;
+
+        BitMatrix2D resMatrix = new BitMatrix2D(n, m);
+        
+        //nur nen Versuch, muss noch getestet werden
+        System.arraycopy(this.array, 0, resMatrix, 0, m);
+        System.arraycopy(m2, 0, resMatrix, this.array.length, m);
+        
+        return resMatrix;
     }
 
     /**
@@ -123,6 +158,11 @@ public class BitMatrix2D {
        return t_matrix;
     }
 
+    /**
+     * Zaehlt binaer von 0...0 bis 1...1
+     * @param vector
+     * @return
+     */
     public boolean[] incVector(boolean[] vector) {
         final boolean CARRYOVER = true;
         int n = vector.length - 1; //von hinten anfangen zu prüfen
@@ -136,8 +176,11 @@ public class BitMatrix2D {
         return vector;
     }
 
-
-    @Override
+    /**
+     * toString Methode - gibt Matrix als String aus
+     * @return
+     */
+//    @Override
     public String toString() {
         StringBuffer sb = new StringBuffer();
         for (int i = 0; i < ROWS; i++) {
