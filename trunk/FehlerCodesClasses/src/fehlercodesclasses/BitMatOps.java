@@ -100,6 +100,7 @@ public class BitMatOps {
             sb.deleteCharAt(sb.length() - 1);
             sb.append("\n");
         }
+        System.out.println(ROWS);
         return sb.toString();
     }
 
