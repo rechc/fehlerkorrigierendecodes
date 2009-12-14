@@ -12,6 +12,7 @@ import javax.xml.crypto.dsig.Transform;
  */
 public class BitMatOps {
 
+
     public static boolean[] multiply(boolean[] vector, boolean[][] matrix) {
         if (vector.length != matrix.length) {
             throw new IllegalArgumentException();
@@ -26,51 +27,6 @@ public class BitMatOps {
         return resVec;
     }
 
-    /**
-     * Methode um eine Matix zu transponieren
-     * @param matrix
-     * @return transponierte Matrix
-     */
-   private static boolean[][] transponieren(boolean[][] matrix){
-       
-        int ROWS = matrix.length;        // Konstante fuer Anzahl Reihen
-        int COLUMNS = matrix[0].length;  // Konstante fuer Anzahl Spalten
-
-           boolean [][] t_matrix = new boolean [COLUMNS][ROWS];
-           for (int i = 0; i < ROWS; i++) {
-             for (int j = 0; j < COLUMNS; j++) {
-                t_matrix[j][i] = matrix[i][j];
-             }
-          }
-       return t_matrix;
-   }
-
-   /**
-    * Matrix mit Matrix multiplizieren
-    *
-    * ANGENOMMEN WIR ARBEITEN MIT EINER KLASSE Matrix
-    *
-    * @param a
-    * @param b
-    * @return ergebnis Matrix
-    */
-   public static Matrix matmult(Matrix a, Matrix b) {
-    int l = a.getRowDim();
-    int n = b.getRowDim();
-    int m = a.getColumnDim();
-
-    Matrix ergMatrix = new Matrix(n, m);
-
-    for (int i = 0; i < m; i++) {
-      for (int j = 0; j < n; j++) {
-        for (int k = 0; k < l; k++) {
-          ergMatrix.arr[i][j] ^= a.arr[i][k] && b.arr[k][j];
-        }
-      }
-    }
-    
-    return ergMatrix;
-  }
 
 
     public static String getString(boolean[] vector) {

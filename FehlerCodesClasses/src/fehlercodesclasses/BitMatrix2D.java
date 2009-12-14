@@ -12,9 +12,9 @@ import java.util.LinkedList;
  */
 public class BitMatrix2D {
 
-    boolean[][] matrix;
-    int ROWS;
-    int COLUMNS;
+    private boolean[][] matrix;
+    private int ROWS;
+    private int COLUMNS;
     //int HEMMINGDISTANCE;
     /**
      * Nimmt strings mit folgendem schema:
@@ -46,21 +46,28 @@ public class BitMatrix2D {
             rowList.add(createBinVector(row));
         }
         this.ROWS = rowList.size();
-        matrix = new boolean[ROWS][1];
+        this.matrix = new boolean[ROWS][1];
         int i = 0;
         for (boolean[] vector : rowList) {
-            matrix[i] = vector;
+            this.matrix[i] = vector;
             i++;
         }
+    }
+
+
+    public BitMatrix2D(int n, int m){
+        this.COLUMNS = m;
+        this.ROWS = n;
+        this.matrix = new boolean[n][m];
     }
 
     public BitMatrix2D(int bitLength) {
         ROWS = (int)Math.pow(2, bitLength);
         COLUMNS = bitLength;
-        matrix = new boolean[ROWS][COLUMNS];
+        this.matrix = new boolean[ROWS][COLUMNS];
         boolean[] vector = new boolean[COLUMNS];
         for(int i=0; i<ROWS; i++){
-            matrix[i] = vector.clone();
+            this.matrix[i] = vector.clone();
             vector = incVector(vector);
         }
     }
@@ -78,27 +85,39 @@ public class BitMatrix2D {
         return returnVec;
     }
 
-    public int getCOLUMNS() {
-        return COLUMNS;
-    }
+    public BitMatrix2D multiplyWith(BitMatrix2D multiMatrix) {
+        int l = this.getROWS();
+        int n = multiMatrix.getROWS();
+        int m = this.getCOLUMNS();
 
-    public int getROWS() {
-        return ROWS;
-    }
+        BitMatrix2D resMatrix = new BitMatrix2D(this.ROWS, this.COLUMNS);
 
-    public BitMatrix2D multiplyWith(BitMatrix2D m) {
-        //TODO insert code
-        return null;
+        for (int i = 0; i < m; i++)
+          for (int j = 0; j < n; j++)
+            for (int k = 0; k < l; k++)
+              resMatrix[i][j] ^= this.matrix[i][k] && multiMatrix[k][j];
+
+          return resMatrix;
+
     }
 
     public BitMatrix2D concat(BitMatrix2D m){
-        //TODO write code
         return null;
     }
 
+    /**
+     * Methode um eine Matix zu transponieren
+     * @param matrix
+     * @return transponierte Matrix
+     */
     public BitMatrix2D transpose() {
-        //TODO insert code
-        return null;
+           BitMatrix2D t_matrix = new BitMatrix2D(this.ROWS, this.COLUMNS);
+           for (int i = 0; i < ROWS; i++) {
+             for (int j = 0; j < COLUMNS; j++) {
+                t_matrix[j][i] = this.matrix[i][j];
+             }
+          }
+       return t_matrix;
     }
 
     public boolean[] incVector(boolean[] vector) {
@@ -113,6 +132,7 @@ public class BitMatrix2D {
         }
         return vector;
     }
+
 
     @Override
     public String toString() {
@@ -131,4 +151,16 @@ public class BitMatrix2D {
         sb.deleteCharAt(sb.length() - 1);
         return sb.toString();
     }
+
+
+//-----------------------( GET + SET)------------->
+
+    public int getCOLUMNS() {
+        return COLUMNS;
+    }
+
+    public int getROWS() {
+        return ROWS;
+    }
+
 }
