@@ -34,11 +34,13 @@ public class Main {
 
          BitMatrix2D bm = new BitMatrix2D("1,1,1\n1,0,1\n0,0,1\n");
          BitMatrix2D bm2 = new BitMatrix2D("1,0,1\n1,0,0\n1,0,1\n");
-//         BitMatrix2D bm2 = bm.transpose();
-        bm2 = bm.multiplyWith(bm2);
+//        BitMatrix2D bm2 = bm.transpose();
+//        bm2 = bm.multiplyWith(bm2);
 //         BitMatrix2D bm2  = new BitMatrix2D(3);
+         BitMatrix2D bm3 = bm.concat(bm2);
+
          System.out.println(bm);
          System.out.println("-----------");
-         System.out.println(bm2);
+         System.out.println(bm3);
     }
 }
