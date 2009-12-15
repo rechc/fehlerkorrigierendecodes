@@ -29,10 +29,14 @@ public class Main {
 //            System.out.println(BitMatOps.getString(vector));
 //        }
 //       boolean[][] matrix = {{true, true, false}, {true, false, true}, {true, true, true}, {false, true, true}};
-//       BitMatOps.transponieren(matrix);
+//
+//       BitMatrix2D.transpose(matrix);
 
          BitMatrix2D bm = new BitMatrix2D("1,1,1\n1,0,1\n0,0,1\n");
-         BitMatrix2D bm2  = new BitMatrix2D(3);
+         BitMatrix2D bm2 = new BitMatrix2D("1,0,1\n1,0,0\n1,0,1\n");
+//         BitMatrix2D bm2 = bm.transpose();
+        bm2 = bm.multiplyWith(bm2);
+//         BitMatrix2D bm2  = new BitMatrix2D(3);
          System.out.println(bm);
          System.out.println("-----------");
          System.out.println(bm2);

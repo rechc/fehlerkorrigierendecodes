@@ -150,8 +150,8 @@ public class BitMatrix2D {
      */
     public BitMatrix2D transpose() {
            BitMatrix2D t_matrix = new BitMatrix2D(this.ROWS, this.COLUMNS);
-           for (int i = 0; i < ROWS; i++) {
-             for (int j = 0; j < COLUMNS; j++) {
+           for (int i = 0; i < this.ROWS; i++) {
+             for (int j = 0; j < this.COLUMNS; j++) {
                 t_matrix.array[j][i] = this.array[i][j];
              }
           }
