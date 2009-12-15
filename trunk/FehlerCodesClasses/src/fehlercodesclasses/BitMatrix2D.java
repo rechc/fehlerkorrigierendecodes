@@ -181,9 +181,14 @@ public class BitMatrix2D {
             if(!(o instanceof BitMatrix2D))
                 return false;
             BitMatrix2D bm = (BitMatrix2D)o;
-            if(Arrays.equals(bm.array, this.array))
-                return true;
-            return false;
+            return Arrays.equals(bm.array, this.array);
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 37 * hash + Arrays.deepHashCode(this.array);
+        return hash;
     }
 
     /**
