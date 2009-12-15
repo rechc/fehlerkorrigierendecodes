@@ -4,6 +4,7 @@
  */
 package fehlercodesclasses;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 
 /**
@@ -13,9 +14,9 @@ import java.util.LinkedList;
 public class BitMatrix2D {
 
     //Attribute
-    private boolean array[][];
-    private int ROWS;
-    private int COLUMNS;
+    private final boolean array[][];
+    private final int ROWS;
+    private final int COLUMNS;
     //int HEMMINGDISTANCE;
 
     /**
@@ -158,7 +159,7 @@ public class BitMatrix2D {
     }
 
     /**
-     * Zaehlt binaer von 0...0 bis 1...1
+     * Zaehlt binär von 0...0 bis 1...1
      * @param vector
      * @return
      */
@@ -175,11 +176,21 @@ public class BitMatrix2D {
         return vector;
     }
 
+    @Override
+    public boolean equals(Object o){
+            if(!(o instanceof BitMatrix2D))
+                return false;
+            BitMatrix2D bm = (BitMatrix2D)o;
+            if(Arrays.equals(bm.array, this.array))
+                return true;
+            return false;
+    }
+
     /**
      * toString Methode - gibt Matrix als String aus
      * @return
      */
-//    @Override
+    @Override
     public String toString() {
         StringBuffer sb = new StringBuffer();
         for (int i = 0; i < ROWS; i++) {
