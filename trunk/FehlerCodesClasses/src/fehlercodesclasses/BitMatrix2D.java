@@ -66,10 +66,6 @@ public class BitMatrix2D {
         this.COLUMNS = m;
         this.ROWS = n;
         this.array = new boolean[n][m];
-
-         for (int i = 0; i < m; i++) 
-             for (int j = 0; j < n; j++) 
-                array[i][j] = false;
     }
 
     /**
@@ -131,14 +127,17 @@ public class BitMatrix2D {
      * @return
      */
     public BitMatrix2D concat(BitMatrix2D m2){
-        int n = m2.getROWS();
-        int m = this.getCOLUMNS() + this.COLUMNS;
+        int n = this.getROWS();
+        int m = this.getCOLUMNS();
+        int l = this.getCOLUMNS() + m2.getCOLUMNS();
 
-        BitMatrix2D resMatrix = new BitMatrix2D(n, m);
-        
-        //nur nen Versuch, muss noch getestet werden
-        System.arraycopy(this.array, 0, resMatrix, 0, m);
-        System.arraycopy(m2, 0, resMatrix, this.array.length, m);
+        BitMatrix2D resMatrix = new BitMatrix2D(n, l);
+
+        for (int i = 0; i < m; i++)
+          for (int j = 0; j < n; j++){
+              resMatrix.array[i][j] = this.array[i][j];
+              resMatrix.array[i][j + m] = m2.array[i][j];
+          }
         
         return resMatrix;
     }
