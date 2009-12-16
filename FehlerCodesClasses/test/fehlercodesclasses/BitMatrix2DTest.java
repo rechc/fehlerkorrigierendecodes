@@ -58,10 +58,10 @@ public class BitMatrix2DTest {
     @Test
     public void testConcat() {
         System.out.println("concat");
-        BitMatrix2D m2 = new BitMatrix2D("1011\n1101\n1011\n1010");
-        BitMatrix2D instance = new BitMatrix2D("1000\n0100\n0010\n0001");
+        BitMatrix2D bm = new BitMatrix2D("1000\n0100\n0010\n0001");
+        BitMatrix2D instance = new BitMatrix2D("1011\n1101\n1011\n1010");
         BitMatrix2D expResult = new BitMatrix2D("10111000\n11010100\n10110010\n10100001");
-        BitMatrix2D result = instance.concat(m2);
+        BitMatrix2D result = instance.concat(bm);
         assertEquals(expResult, result);
     }
 
@@ -138,19 +138,4 @@ public class BitMatrix2DTest {
         boolean result = instance.equals(o);
         assertEquals(expResult, result);
     }
-
-    /**
-     * Test of hashCode method, of class BitMatrix2D.
-     */
-    @Test
-    public void testHashCode() {
-        System.out.println("hashCode");
-        BitMatrix2D instance = null;
-        int expResult = 0;
-        int result = instance.hashCode();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
 }

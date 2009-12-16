@@ -6,7 +6,6 @@ package fehlercodesclasses;
 
 import java.util.Arrays;
 import java.util.LinkedList;
-import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 
 /**
  *
@@ -32,8 +31,9 @@ public class BitMatrix2D {
         binMatrix = binMatrix.replace(",", "");
         String row;
         LinkedList<boolean[]> rowList = new LinkedList<boolean[]>();
-        if (!binMatrix.matches("[01\n]+")) 
+        if (!binMatrix.matches("[01\n]+")) {
             throw new IllegalArgumentException();
+        }
         binMatrix += "\n";  //damit er auch immer ein ende findet
         int beginIndex = 0;
         int endIndex = binMatrix.indexOf("\n");
@@ -64,7 +64,7 @@ public class BitMatrix2D {
      * @param n
      * @param m
      */
-    public BitMatrix2D(int n, int m){
+    public BitMatrix2D(int n, int m) {
         this.COLUMNS = m;
         this.ROWS = n;
         this.array = new boolean[n][m];
@@ -75,13 +75,26 @@ public class BitMatrix2D {
      * @param bitLength
      */
     public BitMatrix2D(int bitLength) {
-        ROWS = (int)Math.pow(2, bitLength);
-        COLUMNS = bitLength;
+        this.ROWS = (int) Math.pow(2, bitLength);
+        this.COLUMNS = bitLength;
         this.array = new boolean[ROWS][COLUMNS];
         boolean[] vector = new boolean[COLUMNS];
-        for(int i=0; i<ROWS; i++){
+        for (int i = 0; i < ROWS; i++) {
             this.array[i] = vector.clone();
             vector = incVector(vector);
+        }
+    }
+    /**
+     * Erstellt ein BitMatrix2D Object aus einer 2D boolean matrix
+     */
+    public BitMatrix2D(boolean[][] matrix) {
+        this.ROWS = matrix.length;
+        this.COLUMNS = matrix[0].length;
+        this.array = new boolean[ROWS][COLUMNS];
+        for (int i = 0; i < ROWS; i++) {
+            for (int j = 0; j < COLUMNS; j++) {
+                this.array[i][j] = matrix[i][j];
+            }
         }
     }
 
@@ -105,28 +118,21 @@ public class BitMatrix2D {
 
     /**
      * Multipliziert Matrix mit einer anderen
-     * @param multiMatrix
+     * @param bm
      * @return
      */
-    public BitMatrix2D multiplyWith(BitMatrix2D multiMatrix) {
-        int z = this.getROWS(); //1
-        int n = this.getCOLUMNS(); //3
-        int m = multiMatrix.getROWS(); //3
-        int l = multiMatrix.getCOLUMNS(); //1
-
-        System.out.println(multiMatrix.ROWS); //3
-        System.out.println(multiMatrix.COLUMNS); //1
-
-        BitMatrix2D resMatrix = new BitMatrix2D(z, l);
-
-        for (int i = 0; i < m; i++)
-          for (int j = 0; j < n; j++)
-            for (int k = 0; k < l; k++){
-//              System.out.print(resMatrix.array[i][j] & this.array[i][k] & multiMatrix.array[k][j]);
-              resMatrix.array[i][j] ^= this.array[i][k] && multiMatrix.array[k][j];
+    public BitMatrix2D multiplyWith(BitMatrix2D bm) {
+        if (this.getCOLUMNS() != bm.getROWS()) 
+            throw new IllegalArgumentException();
+        boolean[][] resMat = new boolean[this.getROWS()][bm.getCOLUMNS()];
+        for (int i = 0; i < this.getROWS(); i++) {
+            for (int j = 0; j < bm.getCOLUMNS(); j++) {
+                for (int k = 0; k < this.getCOLUMNS(); k++) {
+                    resMat[i][j] ^= this.array[i][k] && bm.array[k][j];
+                }
             }
-
-          return resMatrix;
+        }
+        return new BitMatrix2D(resMat);
     }
 
     /**
@@ -134,19 +140,15 @@ public class BitMatrix2D {
      * @param m
      * @return
      */
-    public BitMatrix2D concat(BitMatrix2D m2){
-        int n = this.getROWS();
-        int m = this.getCOLUMNS();
-        int l = this.getCOLUMNS() + m2.getCOLUMNS();
-
-        BitMatrix2D resMatrix = new BitMatrix2D(n, l);
-
-        for (int i = 0; i < m; i++)
-          for (int j = 0; j < n; j++){
-              resMatrix.array[i][j] = this.array[i][j];
-              resMatrix.array[i][j + m] = m2.array[i][j];
-          }
-        
+    public BitMatrix2D concat(BitMatrix2D bm) {
+        int resCols = COLUMNS + bm.getCOLUMNS();
+        BitMatrix2D resMatrix = new BitMatrix2D(ROWS, resCols);
+        for (int i = 0; i < COLUMNS; i++) {
+            for (int j = 0; j < ROWS; j++) {
+                resMatrix.array[i][j] = this.array[i][j];
+                resMatrix.array[i][j + COLUMNS] = bm.array[i][j];
+            }
+        }
         return resMatrix;
     }
 
@@ -162,11 +164,11 @@ public class BitMatrix2D {
         BitMatrix2D t_matrix = new BitMatrix2D(m, n);
 
         for (int i = 0; i < n; i++) {
-           for (int j = 0; j < m; j++) {
-              t_matrix.array[j][i] = this.array[i][j];
-           }
+            for (int j = 0; j < m; j++) {
+                t_matrix.array[j][i] = this.array[i][j];
+            }
         }
-       return t_matrix;
+        return t_matrix;
     }
 
     /**
@@ -188,11 +190,25 @@ public class BitMatrix2D {
     }
 
     @Override
-    public boolean equals(Object o){
-            if(!(o instanceof BitMatrix2D))
-                return false;
-            BitMatrix2D bm = (BitMatrix2D)o;
-            return Arrays.equals(bm.array, this.array);
+    public boolean equals(Object o) {
+        if (!(o instanceof BitMatrix2D)) {
+            return false;
+        }
+        BitMatrix2D bm = (BitMatrix2D) o;
+        if (bm.getROWS() != this.getROWS()) {
+            return false;
+        }
+        if (bm.getCOLUMNS() != this.getCOLUMNS()) {
+            return false;
+        }
+        for (int i = 0; i < bm.getROWS(); i++) {
+            for (int j = 0; j < bm.getCOLUMNS(); j++) {
+                if (bm.array[i][j] != this.array[i][j]) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     @Override
@@ -224,9 +240,7 @@ public class BitMatrix2D {
         return sb.toString();
     }
 
-
 //-----------------------( GET + SET)------------->
-
     public int getCOLUMNS() {
         return COLUMNS;
     }
@@ -234,5 +248,4 @@ public class BitMatrix2D {
     public int getROWS() {
         return ROWS;
     }
-
 }
