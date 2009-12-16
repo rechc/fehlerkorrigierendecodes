@@ -6,6 +6,7 @@ package fehlercodesclasses;
 
 import java.util.Arrays;
 import java.util.LinkedList;
+import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 
 /**
  *
@@ -108,16 +109,22 @@ public class BitMatrix2D {
      * @return
      */
     public BitMatrix2D multiplyWith(BitMatrix2D multiMatrix) {
-        int l = this.getROWS();
-        int n = multiMatrix.getROWS();
-        int m = this.getCOLUMNS();
+        int z = this.getROWS(); //1
+        int n = this.getCOLUMNS(); //3
+        int m = multiMatrix.getROWS(); //3
+        int l = multiMatrix.getCOLUMNS(); //1
 
-        BitMatrix2D resMatrix = new BitMatrix2D(n, m);
+        System.out.println(multiMatrix.ROWS); //3
+        System.out.println(multiMatrix.COLUMNS); //1
+
+        BitMatrix2D resMatrix = new BitMatrix2D(z, l);
 
         for (int i = 0; i < m; i++)
           for (int j = 0; j < n; j++)
-            for (int k = 0; k < l; k++)
+            for (int k = 0; k < l; k++){
+//              System.out.print(resMatrix.array[i][j] & this.array[i][k] & multiMatrix.array[k][j]);
               resMatrix.array[i][j] ^= this.array[i][k] && multiMatrix.array[k][j];
+            }
 
           return resMatrix;
     }
@@ -149,12 +156,16 @@ public class BitMatrix2D {
      * @return transponierte Matrix
      */
     public BitMatrix2D transpose() {
-           BitMatrix2D t_matrix = new BitMatrix2D(this.ROWS, this.COLUMNS);
-           for (int i = 0; i < this.ROWS; i++) {
-             for (int j = 0; j < this.COLUMNS; j++) {
-                t_matrix.array[j][i] = this.array[i][j];
-             }
-          }
+        int n = this.getROWS();
+        int m = this.getCOLUMNS();
+
+        BitMatrix2D t_matrix = new BitMatrix2D(m, n);
+
+        for (int i = 0; i < n; i++) {
+           for (int j = 0; j < m; j++) {
+              t_matrix.array[j][i] = this.array[i][j];
+           }
+        }
        return t_matrix;
     }
 
