@@ -242,6 +242,22 @@ public class BitMatrix2D {
         return true;
     }
 
+    public boolean isNullVektor(){
+        if(array.length == 1){
+            for(int i=0; i<array.length;i++)
+                if(array[0][i] == true)
+                        return false;
+            return true;
+        }
+        if(array[0].length == 1){
+            for(int i=0; i<array[0].length;i++)
+                if(array[i][0] == true)
+                        return false;
+            return true;
+        }
+        return false;
+    }
+
     @Override
     public int hashCode() {
         int hash = 5;
