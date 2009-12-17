@@ -138,4 +138,43 @@ public class BitMatrix2DTest {
         boolean result = instance.equals(o);
         assertEquals(expResult, result);
     }
+
+    /**
+     * Test of createBinVector method, of class BitMatrix2D.
+     */
+    @Test
+    public void testCreateBinVector() {
+        System.out.println("createBinVector");
+        int number = 7;
+        int bitLength = 3;
+        BitMatrix2D instance = BitMatrix2D.createBinVector(number, bitLength);
+        BitMatrix2D expResult = new BitMatrix2D("111");
+        BitMatrix2D result = instance.createBinVector(number, bitLength);
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of hashCode method, of class BitMatrix2D.
+     */
+    @Test
+    public void testHashCode() {
+        System.out.println("hashCode");
+        BitMatrix2D instance = new BitMatrix2D("1");
+        int expResult = 1478;
+        int result = instance.hashCode();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of createErrorVector method, of class BitMatrix2D.
+     */
+    @Test
+    public void testCreateErrorVector() {
+        System.out.println("createErrorVector");
+        int bitPos = 2;
+        int bitLength = 4;
+        BitMatrix2D expResult = new BitMatrix2D("0010");
+        BitMatrix2D result = BitMatrix2D.createErrorVector(bitPos, bitLength);
+        assertEquals(expResult, result);
+    }
 }
