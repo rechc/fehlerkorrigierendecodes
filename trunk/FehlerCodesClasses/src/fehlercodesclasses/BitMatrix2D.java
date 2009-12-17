@@ -98,6 +98,32 @@ public class BitMatrix2D {
         }
     }
 
+    public static BitMatrix2D createBinVector(int dezimalValue, int bitLength){
+        if(dezimalValue < 0 || bitLength < 1)
+            throw new IllegalArgumentException();
+        BitMatrix2D bm = new BitMatrix2D(1, bitLength);
+        int remainder = 0;
+        int i = bitLength -1;
+        while(dezimalValue != 0){
+            remainder = dezimalValue % 2;
+            dezimalValue = dezimalValue / 2;
+            if(remainder == 0)
+                bm.array[0][i] = false;
+            else
+                bm.array[0][i] = true;
+            i--;
+        }
+        return bm;
+    }
+
+    public static BitMatrix2D createErrorVector(int bitPos,int bitLength){
+        if(bitPos < 0 || bitLength < 1 || bitPos >= bitLength)
+            throw new IllegalArgumentException();
+        BitMatrix2D bm = new BitMatrix2D(1, bitLength);
+        bm.array[0][bitPos] = true;
+        return bm;
+    }
+
     /**
      * Erstellt einen binaeren Vektor
      * @param binVector
