@@ -58,9 +58,9 @@ public class BitMatrix2DTest {
     @Test
     public void testConcat() {
         System.out.println("concat");
-        BitMatrix2D bm = new BitMatrix2D("1000\n0100\n0010\n0001");
-        BitMatrix2D instance = new BitMatrix2D("1011\n1101\n1011\n1010");
-        BitMatrix2D expResult = new BitMatrix2D("10111000\n11010100\n10110010\n10100001");
+        BitMatrix2D bm = new BitMatrix2D("100\n010\n001");
+        BitMatrix2D instance = new BitMatrix2D("0111\n1011\n1101");
+        BitMatrix2D expResult = new BitMatrix2D("0111100\n1011010\n1101001");
         BitMatrix2D result = instance.concat(bm);
         assertEquals(expResult, result);
     }
@@ -191,6 +191,22 @@ public class BitMatrix2DTest {
         instance = new BitMatrix2D("0\n0\n0\n0");
         expResult = true;
         result = instance.isNullVektor();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of subMatrix method, of class BitMatrix2D.
+     */
+    @Test
+    public void testSubMatrix() {
+        System.out.println("subMatrix");
+        int beginR = 0;
+        int beginL = 4;
+        int endR = 3;
+        int endL = 6;
+        BitMatrix2D instance = new BitMatrix2D("1000011\n0100101\n0010110\n0001111");
+        BitMatrix2D expResult = new BitMatrix2D("011\n101\n110\n111");
+        BitMatrix2D result = instance.subMatrix(beginR, beginL, endR, endL);
         assertEquals(expResult, result);
     }
 }
