@@ -137,6 +137,10 @@ public class BitMatrix2DTest {
         boolean expResult = true;
         boolean result = instance.equals(o);
         assertEquals(expResult, result);
+        o = new BitMatrix2D("101");
+        instance = new BitMatrix2D("101");
+        result = instance.equals(o);
+       assertEquals(result, expResult);
     }
 
     /**

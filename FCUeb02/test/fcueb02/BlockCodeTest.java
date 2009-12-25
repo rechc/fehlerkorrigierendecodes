@@ -70,12 +70,56 @@ public class BlockCodeTest {
     @Test
     public void testCalcSyndroms1Bit() {
         System.out.println("calcSyndroms1Bit");
-        BitMatrix2D hMat = null;
-        BlockCode instance = null;
-        BitMatrix2D[] expResult = null;
-        BitMatrix2D[] result = instance.calcSyndroms1Bit(hMat);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        BitMatrix2D hMat = new BitMatrix2D("0111100\n1011010\n1101001");
+        BitMatrix2D[] expResult = { new BitMatrix2D("011"),
+                                    new BitMatrix2D("101"),
+                                    new BitMatrix2D("110"),
+                                    new BitMatrix2D("111"),
+                                    new BitMatrix2D("100"),
+                                    new BitMatrix2D("010"),
+                                    new BitMatrix2D("001")};
+        BitMatrix2D[] result = BlockCode.calcSyndroms1Bit(hMat);
+        assertTrue(expResult.length == result.length);
+        for(int i=0; i<expResult.length;i++)
+            assertEquals(expResult[i],result[i]);
+    }
+
+    /**
+     * Test of calcSyndroms2Bit method, of class BlockCode.
+     */
+    @Test
+    public void testCalcSyndroms2Bit() {
+        System.out.println("calcSyndroms2Bit");
+        BitMatrix2D hMat = new BitMatrix2D("0111100\n1011010\n1101001");
+        BitMatrix2D[] expResult = { new BitMatrix2D("110"),
+                                    new BitMatrix2D("101"),
+                                    new BitMatrix2D("100"),
+                                    new BitMatrix2D("111"),
+                                    new BitMatrix2D("001"),
+                                    new BitMatrix2D("010"),
+
+                                    new BitMatrix2D("011"),
+                                    new BitMatrix2D("010"),
+                                    new BitMatrix2D("001"),
+                                    new BitMatrix2D("111"),
+                                    new BitMatrix2D("100"),
+
+                                    new BitMatrix2D("001"),
+                                    new BitMatrix2D("010"),
+                                    new BitMatrix2D("100"),
+                                    new BitMatrix2D("111"),
+
+                                    new BitMatrix2D("011"),
+                                    new BitMatrix2D("101"),
+                                    new BitMatrix2D("110"),
+
+                                    new BitMatrix2D("110"),
+                                    new BitMatrix2D("101"),
+
+                                    new BitMatrix2D("011")};
+        BitMatrix2D[] result = BlockCode.calcSyndroms2Bit(hMat);
+        assertTrue(expResult.length == result.length);
+        for(int i=0; i<expResult.length;i++)
+            assertEquals(expResult[i],result[i]);
     }
 }

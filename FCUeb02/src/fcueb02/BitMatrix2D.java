@@ -88,7 +88,7 @@ public class BitMatrix2D {
      * Bildet Einheitsmatrix mit der Bitlänge bitLength
      * @param bitLength
      */
-    public BitMatrix2D(int bitLength){
+    public BitMatrix2D(int bitLength) {
         ROWS = COLUMNS = bitLength;
         array = new boolean[ROWS][COLUMNS];
         for (int i = 0; i < array.length; i++) {
@@ -183,38 +183,35 @@ public class BitMatrix2D {
      * @return
      */
     public BitMatrix2D concat(BitMatrix2D bm) {
-//        int resCols = COLUMNS + bm.getCOLUMNS();
-//        BitMatrix2D resMatrix = new BitMatrix2D(ROWS, resCols);
-//        for (int i = 0; i < COLUMNS; i++) {
-//            for (int j = 0; j < ROWS; j++) {
-//                resMatrix.array[i][j] = this.array[i][j];
-//                resMatrix.array[i][j + COLUMNS] = bm.array[i][j];
-//            }
-//        }
-//        return resMatrix;
+        if (ROWS != bm.ROWS) {
+            throw new IllegalArgumentException();
+        }
         boolean[][] resMat = new boolean[this.ROWS][bm.COLUMNS + this.COLUMNS];
         for (int i = 0; i < ROWS; i++) {
             for (int j = 0; j < COLUMNS; j++) {
                 resMat[i][j] = this.array[i][j];
             }
         }
-        for (int i = ROWS; i < resMat.length; i++) {
-            for (int j = COLUMNS; j < resMat[0].length; j++) {
-                resMat[i][j] = bm.array[i-ROWS][j-COLUMNS];
+        for (int i = 0; i < bm.ROWS; i++) {
+            for (int j = 0; j < bm.COLUMNS; j++) {
+                resMat[i][j + COLUMNS] = bm.array[i][j];
             }
         }
         return new BitMatrix2D(resMat);
     }
 
-    public BitMatrix2D subMatrix(int beginR, int beginL, int endR, int endL) {
-        if ((beginR < 0 || beginL < 0) || (endR < beginR) || (endL < beginL)
-                || (endR >= this.array.length) || (endL >= this.array[0].length)) {
+    /**
+     * Liefert eine Untermatrix zurück
+     */
+    public BitMatrix2D subMatrix(int beginR, int beginC, int endR, int endC) {
+        if ((beginR < 0 || beginC < 0) || (endR < beginR) || (endC < beginC)
+                || (endR >= this.array.length) || (endC >= this.array[0].length)) {
             throw new IllegalArgumentException();
         }
-        boolean[][] resMat = new boolean[endR - beginR + 1][endL - beginL + 1];
+        boolean[][] resMat = new boolean[endR - beginR + 1][endC - beginC + 1];
         for (int i = beginR; i <= endR; i++) {
-            for (int j = beginL; j <= endL; j++) {
-                resMat[i - beginR][j - beginL] = this.array[i][j];
+            for (int j = beginC; j <= endC; j++) {
+                resMat[i - beginR][j - beginC] = this.array[i][j];
             }
         }
         return new BitMatrix2D(resMat);

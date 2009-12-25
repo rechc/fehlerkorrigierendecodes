@@ -13,20 +13,20 @@ public class BlockCode {
     BitMatrix2D gMat;
     BitMatrix2D hMat;
     BitMatrix2D[] syndroms1Bit;
-    BitMatrix2D[] sysndroms2Bit;
+    BitMatrix2D[] syndroms2Bit;
     int hemmingdist;
 
     public BlockCode(String generatorMatrix) {
         gMat = new BitMatrix2D(generatorMatrix);
         hMat = calcHMat(this.gMat);
         syndroms1Bit = calcSyndroms1Bit(this.hMat);
-        syndroms1Bit = calcSyndroms2Bit();
+        syndroms2Bit = calcSyndroms2Bit(this.hMat);
         hemmingdist = calcHemmingdistance();
     }
 
     public String checkWord(String word) {
         //TODO implement
-        return null;
+        throw new UnsupportedOperationException("Not yet implemented");
     }
 
     public static BitMatrix2D calcHMat(BitMatrix2D gMat) {
@@ -37,18 +37,32 @@ public class BlockCode {
     }
 
     public static BitMatrix2D[] calcSyndroms1Bit(BitMatrix2D hMat) {
-        BitMatrix2D[] syndroms = new BitMatrix2D[hMat.getCOLUMNS()];
-        boolean[][] eVector = new boolean[hMat.getCOLUMNS()][1];
-        for(int i=0; i<hMat.getCOLUMNS();i++){
-            eVector[i][0] = true;
-            syndroms[i] = hMat.multiplyWith(new BitMatrix2D(eVector));
-            eVector[i][0] = false;
+        final int ROWS = hMat.getROWS();
+        final int COLS = hMat.getCOLUMNS();
+        BitMatrix2D[] syndroms = new BitMatrix2D[COLS];
+        for (int i = 0; i < COLS; i++) {
+            syndroms[i] = hMat.subMatrix(0, i, ROWS-1, i).transpose();
         }
         return syndroms;
     }
 
-    private BitMatrix2D[] calcSyndroms2Bit() {
-        throw new UnsupportedOperationException("Not yet implemented");
+    public static BitMatrix2D[] calcSyndroms2Bit(BitMatrix2D hMat) {
+        final int COLS = hMat.getCOLUMNS();
+        BitMatrix2D[] syndroms = new BitMatrix2D[MyMath.binCoeff(COLS, 2)];
+        boolean[][] eVec = new boolean[COLS][1];
+        BitMatrix2D eMat;
+        int n=0;
+        for (int i = 0; i < COLS; i++) {
+            for (int j = i+1; j < COLS; j++) {
+                eVec[i][0] = true;
+                eVec[j][0] = true;
+                eMat = new BitMatrix2D(eVec);
+                syndroms[n++] = hMat.multiplyWith(eMat).transpose();
+                eVec[i][0] = false;
+                eVec[j][0] = false;
+            }
+        }
+        return syndroms;
     }
 
     private int calcHemmingdistance() {
