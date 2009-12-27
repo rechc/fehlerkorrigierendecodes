@@ -211,12 +211,12 @@ public class BitMatrix2D {
         BitMatrix2D resMatrix = new BitMatrix2D(ROWS, resCols);
         for (int i = 0; i < bm.COLUMNS; i++) {
             for (int j = 0; j < ROWS; j++) {
-                System.out.println("a " + resMatrix.array[i][j]);
-                resMatrix.array[i][j] = this.array[i][j]; //hier passiert der Fehler (this.array[i][j])
-                System.out.println("b " + resMatrix.array[i][j + COLUMNS]);
+                if (j < 3)
+                    resMatrix.array[i][j] = this.array[i][j];
                 resMatrix.array[i][j + COLUMNS] = bm.array[i][j];
             }
         }
+
         return resMatrix;
     }
 
