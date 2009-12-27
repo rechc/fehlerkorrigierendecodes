@@ -37,10 +37,8 @@ public class Manager {
             BitMatrix2D e = BitMatrix2D.createErrorVector(i, 7);
             result = result + "\n" + ((H.multiplyWith(e.transpose())).transpose());
         }
-        
-        
+
         return result;
     }
-
-
+    
 }
