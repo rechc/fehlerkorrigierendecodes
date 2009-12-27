@@ -2,19 +2,19 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package fehlercodesclasses;
 
 /**
  *
- * @author tim
+ * @author Christian
  */
-public class Main {
+public class Manager {
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
 
+    public void syndrome(){
 
     }
+
+
 }
