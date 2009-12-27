@@ -188,8 +188,8 @@ public class BitMatrix2D {
      * @return
      */
     public BitMatrix2D multiplyWith(BitMatrix2D bm) {
-        if (this.getCOLUMNS() != bm.getROWS()) 
-            throw new IllegalArgumentException();
+      //  if (this.getCOLUMNS() != bm.getROWS())
+        //    throw new IllegalArgumentException();
         boolean[][] resMat = new boolean[this.getROWS()][bm.getCOLUMNS()];
         for (int i = 0; i < this.getROWS(); i++) {
             for (int j = 0; j < bm.getCOLUMNS(); j++) {
