@@ -59,6 +59,34 @@ public class BitMatrix2D {
     }
 
     /**
+     * Erstellt eine Kontrollmatrix
+     */
+    public BitMatrix2D createKontrollmatrix(){
+        int dimEinheitsmatrix = this.COLUMNS - this.ROWS;
+        BitMatrix2D kMatrix = new BitMatrix2D(this.ROWS ,dimEinheitsmatrix );
+
+        for (int i = this.getROWS(); i < this.getCOLUMNS(); i++)
+            for ( int j = 0; j < this.getROWS(); j++)
+                kMatrix.array[j][i - this.getROWS()] = this.array[j][i];
+            
+        kMatrix = kMatrix.transpose();
+        return kMatrix.concat(createEinheitsMatrix(dimEinheitsmatrix));
+    }
+
+    /**
+     * Erstellt eine Einheitsmatrix der laenge dim
+     * @return
+     */
+    public BitMatrix2D createEinheitsMatrix(int dim){
+        BitMatrix2D eMatrix = new BitMatrix2D(dim, dim);
+
+        for (int i = 0; i < dim; i++)
+                eMatrix.array[i][i] = true;
+
+        return eMatrix;
+    }
+
+    /**
      * Erstellt Matrix in Dimension n*m
      * und füllt alle Felder mit false
      * @param n
@@ -116,6 +144,18 @@ public class BitMatrix2D {
         return bm;
     }
 
+    /**
+     * Prueft ob uebergebener Wert ein Nullvektor ist
+     * @return
+     */
+    public boolean isNullVector(){
+        for (int i = 0; i < this.getROWS(); i++)
+            if (this.array[0][i])
+                return false;
+        return true;
+    }
+
+
     public static BitMatrix2D createErrorVector(int bitPos,int bitLength){
         if(bitPos < 0 || bitLength < 1 || bitPos >= bitLength)
             throw new IllegalArgumentException();
@@ -169,9 +209,11 @@ public class BitMatrix2D {
     public BitMatrix2D concat(BitMatrix2D bm) {
         int resCols = COLUMNS + bm.getCOLUMNS();
         BitMatrix2D resMatrix = new BitMatrix2D(ROWS, resCols);
-        for (int i = 0; i < COLUMNS; i++) {
+        for (int i = 0; i < bm.COLUMNS; i++) {
             for (int j = 0; j < ROWS; j++) {
-                resMatrix.array[i][j] = this.array[i][j];
+                System.out.println("a " + resMatrix.array[i][j]);
+                resMatrix.array[i][j] = this.array[i][j]; //hier passiert der Fehler (this.array[i][j])
+                System.out.println("b " + resMatrix.array[i][j + COLUMNS]);
                 resMatrix.array[i][j + COLUMNS] = bm.array[i][j];
             }
         }
