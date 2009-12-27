@@ -59,9 +59,27 @@ public class BitMatrix2DTest {
     public void testConcat() {
         System.out.println("concat");
         BitMatrix2D bm = new BitMatrix2D("1000\n0100\n0010\n0001");
-        BitMatrix2D instance = new BitMatrix2D("1011\n1101\n1011\n1010");
-        BitMatrix2D expResult = new BitMatrix2D("10111000\n11010100\n10110010\n10100001");
+        BitMatrix2D instance = new BitMatrix2D("101\n110\n001\n011");
+        BitMatrix2D expResult = new BitMatrix2D("1011000\n1100100\n0010010\n0110001");
         BitMatrix2D result = instance.concat(bm);
+        assertEquals(expResult, result);
+    }
+
+    @Test
+    public void testCreateEinheitsmatrix(){
+        System.out.println("createEinheitsMatrix");
+        BitMatrix2D instance = new BitMatrix2D("1000\n0100\n0010\n0001");
+        BitMatrix2D expResult = new BitMatrix2D("1000\n0100\n0010\n0001");
+        BitMatrix2D result = instance.createEinheitsMatrix(instance.getROWS());
+        assertEquals(expResult, result);
+    }
+
+    @Test
+    public void testCreateKontrollMatrix(){
+        System.out.println("createKontrollMatrix");
+        BitMatrix2D generatorMatrix = new BitMatrix2D("1001101\n0101010\n0010010");
+        BitMatrix2D expResult = new BitMatrix2D("1101000\n1000100\n0110010\n1000001");
+        BitMatrix2D result =  generatorMatrix.createKontrollmatrix();
         assertEquals(expResult, result);
     }
 
