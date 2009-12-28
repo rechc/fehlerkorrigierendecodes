@@ -33,7 +33,8 @@ public class Manager {
         String result = "";
         BitMatrix2D H = matrix.createKontrollmatrix();
         
-        for (int i = 0; i <= 7;i++){
+        for (int i = 0; i < 6;i++)
+           for ( int j = i + 1; j < 7; j++){
             BitMatrix2D e = BitMatrix2D.createErrorVector(i, 7);
             result = result + "\n" + ((H.multiplyWith(e.transpose())).transpose());
         }
