@@ -98,7 +98,7 @@ public class BitMatrix2D {
         }
     }
 
-        /**
+    /**
      * Erstellt eine Kontrollmatrix
      */
     public BitMatrix2D createKontrollmatrix(){
