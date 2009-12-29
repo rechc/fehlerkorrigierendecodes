@@ -183,18 +183,18 @@ public class BitMatrix2DTest {
     }
 
     /**
-     * Test of isNullVektor method, of class BitMatrix2D.
+     * Test of isNullVector method, of class BitMatrix2D.
      */
     @Test
     public void testIsNullVektor() {
         System.out.println("isNullVektor");
         BitMatrix2D instance = new BitMatrix2D("0000");
         boolean expResult = true;
-        boolean result = instance.isNullVektor();
+        boolean result = instance.isNullVector();
         assertEquals(expResult, result);
         instance = new BitMatrix2D("0\n0\n0\n0");
         expResult = true;
-        result = instance.isNullVektor();
+        result = instance.isNullVector();
         assertEquals(expResult, result);
     }
 

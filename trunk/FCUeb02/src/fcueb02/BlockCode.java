@@ -1,12 +1,8 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package fcueb02;
 
 /**
  *
- * @author tim
+ * @author Christian Rech, Tim Bartsch
  */
 public class BlockCode {
 
@@ -14,21 +10,28 @@ public class BlockCode {
     BitMatrix2D hMat;
     BitMatrix2D[] syndroms1Bit;
     BitMatrix2D[] syndroms2Bit;
-    int hemmingdist;
+    int minHemmingDist;
 
     public BlockCode(String generatorMatrix) {
         gMat = new BitMatrix2D(generatorMatrix);
         hMat = calcHMat(this.gMat);
         syndroms1Bit = calcSyndroms1Bit(this.hMat);
         syndroms2Bit = calcSyndroms2Bit(this.hMat);
-        hemmingdist = calcHemmingdistance();
+        minHemmingDist = calcMinHemmingDistance();
     }
 
+    /**
+     * Überprüft ob word korrekt ist und nimmt falls nicht, eine
+     * (1bit) fehlerkorrektur vor.
+     */
     public String checkWord(String word) {
         //TODO implement
         throw new UnsupportedOperationException("Not yet implemented");
     }
 
+    /**
+     * Berechnet Kontrollmatrix von gMat
+     */
     public static BitMatrix2D calcHMat(BitMatrix2D gMat) {
         BitMatrix2D matA = gMat.subMatrix(0, gMat.getROWS(), gMat.getROWS()-1, gMat.getCOLUMNS()-1);
         matA = matA.transpose();
@@ -36,6 +39,11 @@ public class BlockCode {
         return matA.concat(matB);
     }
 
+    /**
+     * Berechnet alle 1bit syndrome von hMat
+     * @param hMat
+     * @return
+     */
     public static BitMatrix2D[] calcSyndroms1Bit(BitMatrix2D hMat) {
         final int ROWS = hMat.getROWS();
         final int COLS = hMat.getCOLUMNS();
@@ -46,6 +54,11 @@ public class BlockCode {
         return syndroms;
     }
 
+    /**
+     * Berechnet alle 2bit syndrome von hMat
+     * @param hMat
+     * @return
+     */
     public static BitMatrix2D[] calcSyndroms2Bit(BitMatrix2D hMat) {
         final int COLS = hMat.getCOLUMNS();
         BitMatrix2D[] syndroms = new BitMatrix2D[MyMath.binCoeff(COLS, 2)];
@@ -65,7 +78,12 @@ public class BlockCode {
         return syndroms;
     }
 
-    private int calcHemmingdistance() {
+    /**
+     * Berechnet die minimale Hemmingdistanz
+     * @return
+     */
+    private int calcMinHemmingDistance() {
+        //TODO implement
         throw new UnsupportedOperationException("Not yet implemented");
     }
 }

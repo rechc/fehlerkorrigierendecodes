@@ -13,7 +13,9 @@ public class MyMath {
     private MyMath() {
     }
 
-    
+    /**
+     * berechnet die fakultät von a
+     */
     public static int factorial(int a) {
         if (a < 0) {
             throw new IllegalArgumentException();
@@ -28,6 +30,9 @@ public class MyMath {
         return res;
     }
 
+    /**
+     * berechnet n über k
+     */
     public static int binCoeff(int n, int k){
         if(n < 0 || k <0 )
             throw  new IllegalArgumentException();
