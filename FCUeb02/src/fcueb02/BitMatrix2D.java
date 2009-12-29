@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package fcueb02;
 
 import java.util.Arrays;
@@ -110,16 +106,22 @@ public class BitMatrix2D {
         }
     }
 
-    public static BitMatrix2D createBinVector(int dezimalValue, int bitLength) {
-        if (dezimalValue < 0 || bitLength < 1) {
+    /**
+     * Wandelt eine decimalValue in eine binärzahl mit der länge bitlength um
+     * @param decimalValue
+     * @param bitLength
+     * @return
+     */
+    public static BitMatrix2D createBinVector(int decimalValue, int bitLength) {
+        if (decimalValue < 0 || bitLength < 1) {
             throw new IllegalArgumentException();
         }
         BitMatrix2D bm = new BitMatrix2D(1, bitLength);
         int remainder = 0;
         int i = bitLength - 1;
-        while (dezimalValue != 0) {
-            remainder = dezimalValue % 2;
-            dezimalValue = dezimalValue / 2;
+        while (decimalValue != 0) {
+            remainder = decimalValue % 2;
+            decimalValue = decimalValue / 2;
             if (remainder == 0) {
                 bm.array[0][i] = false;
             } else {
@@ -130,6 +132,12 @@ public class BitMatrix2D {
         return bm;
     }
 
+    /**
+     * Erstellt einen 1bit fehlervektor mit der 1 an der stelle bitPos
+     * @param bitPos
+     * @param bitLength
+     * @return
+     */
     public static BitMatrix2D createErrorVector(int bitPos, int bitLength) {
         if (bitPos < 0 || bitLength < 1 || bitPos >= bitLength) {
             throw new IllegalArgumentException();
@@ -276,7 +284,7 @@ public class BitMatrix2D {
         return true;
     }
 
-    public boolean isNullVektor() {
+    public boolean isNullVector() {
         if (array.length == 1) {
             for (int i = 0; i < array.length; i++) {
                 if (array[0][i] == true) {
