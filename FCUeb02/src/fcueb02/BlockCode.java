@@ -17,8 +17,10 @@ public class BlockCode {
         hMat = calcHMat(this.gMat);
         syndroms1Bit = calcSyndroms1Bit(this.hMat);
         syndroms2Bit = calcSyndroms2Bit(this.hMat);
-        minHemmingDist = calcMinHemmingDistance();
+//        minHemmingDist = calcMinHemmingDistance();
     }
+
+    public BlockCode() {}
 
     /**
      * Überprüft ob word korrekt ist und nimmt falls nicht, eine
@@ -27,6 +29,14 @@ public class BlockCode {
     public String checkWord(String word) {
         //TODO implement
         throw new UnsupportedOperationException("Not yet implemented");
+
+//        BitMatrix2D checkWord = new BitMatrix2D(word);
+//        BitMatrix2D result = hMat.multiplyWith(checkWord);
+//
+//        if (!result.isNullVector()){
+//            ;
+//        }
+//        return "";
     }
 
     /**
@@ -39,15 +49,38 @@ public class BlockCode {
         return matA.concat(matB);
     }
 
-
-    public BitMatrix2D[] codewoerter(){
+    /**
+     * Berechnet die Codewoerter zu einer Generatormatrix
+     * @return
+     */
+    public  BitMatrix2D[] codewoerter(){
+        final int ROWS = gMat.getROWS();
         final int COLS = gMat.getCOLUMNS();
         BitMatrix2D[] result = new BitMatrix2D[COLS];
-        for(int i = 0; i < 16; i++)
-           result[i] = gMat.multiplyWith(BitMatrix2D.createBinVector(i, COLS)).transpose();
+
+        for(int i = 0; i < 15; i++){
+           BitMatrix2D bm = BitMatrix2D.createBinVector(i, ROWS);
+           result[i] = bm.multiplyWith(gMat);
+           System.out.println(result[i]);
+        }
 
         return result;
     }
+
+   /**
+    * http://forums.sun.com/thread.jspa?threadID=713088
+    * @param bits
+    * @return
+    */
+   public int calcMinHammingDistance(int bits){
+ 	int weight = 0;
+	for (int i = 0; i < 32; i++) {
+		int lsb = bits & 1;
+		weight += lsb;
+	}
+	return weight;
+    }
+
 
     /**
      * Berechnet alle 1bit syndrome von hMat
