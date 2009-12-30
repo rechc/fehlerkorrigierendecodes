@@ -39,6 +39,16 @@ public class BlockCode {
         return matA.concat(matB);
     }
 
+
+    public BitMatrix2D[] codewoerter(){
+        final int COLS = gMat.getCOLUMNS();
+        BitMatrix2D[] result = new BitMatrix2D[COLS];
+        for(int i = 0; i < 16; i++)
+           result[i] = gMat.multiplyWith(BitMatrix2D.createBinVector(i, COLS)).transpose();
+
+        return result;
+    }
+
     /**
      * Berechnet alle 1bit syndrome von hMat
      * @param hMat
