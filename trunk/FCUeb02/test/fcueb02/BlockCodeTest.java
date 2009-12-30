@@ -52,6 +52,33 @@ public class BlockCodeTest {
         fail("The test case is a prototype.");
     }
 
+    @Test
+    public void testCodeWoerter(){
+       System.out.println("codewoerter");
+       fail("The test case is a prototype.");
+       BitMatrix2D gMat = new BitMatrix2D("1000011\n0100101\n0010110\n0001111");
+       BitMatrix2D[] expResult = { new BitMatrix2D("0000000"),
+                                new BitMatrix2D("0000000"),
+                                new BitMatrix2D("0001111"),
+                                new BitMatrix2D("0010110"),
+                                new BitMatrix2D("0011001"),
+                                new BitMatrix2D("0101010"),
+                                new BitMatrix2D("0110011"),
+                                new BitMatrix2D("0000000"),//<-- muss noch berechnet werden
+                                new BitMatrix2D("0000000"),//<-- muss noch berechnet werden
+                                new BitMatrix2D("0000000"),//<-- muss noch berechnet werden
+                                new BitMatrix2D("1010101"),
+                                new BitMatrix2D("0000000"),//<-- muss noch berechnet werden
+                                new BitMatrix2D("0000000"),//<-- muss noch berechnet werden
+                                new BitMatrix2D("0000000"),//<-- muss noch berechnet werden
+                                new BitMatrix2D("0000000"),//<-- muss noch berechnet werden
+                                new BitMatrix2D("1111111")};
+       BitMatrix2D[] result = null;
+       assertTrue(expResult.length == result.length);
+       for(int i=0; i < expResult.length;i++)
+            assertEquals(expResult[i],result[i]);
+    }
+
     /**
      * Test of calcHMat method, of class BlockCode.
      */
