@@ -37,20 +37,6 @@ public class BlockCodeTest {
     public void tearDown() {
     }
 
-    /**
-     * Test of checkWord method, of class BlockCode.
-     */
-    @Test
-    public void testCheckWord() {
-        System.out.println("checkWord");
-        String word = "";
-        BlockCode instance = null;
-        String expResult = "";
-        String result = instance.checkWord(word);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
 
     @Test
     public void testCodeWoerter(){

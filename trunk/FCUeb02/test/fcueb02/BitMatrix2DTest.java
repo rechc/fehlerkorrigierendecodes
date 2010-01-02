@@ -213,4 +213,90 @@ public class BitMatrix2DTest {
         BitMatrix2D result = instance.subMatrix(beginR, beginL, endR, endL);
         assertEquals(expResult, result);
     }
+
+    /**
+     * Test of isColumnVektor method, of class BitMatrix2D.
+     */
+    @Test
+    public void testIsColumnVektor() {
+        System.out.println("isColumnVektor");
+        BitMatrix2D instance = new BitMatrix2D("1011");
+        boolean expResult = false;
+        boolean result = instance.isColumnVektor();
+        assertEquals(expResult, result);
+        instance = new BitMatrix2D("1\n1\n1\n0");
+        expResult = true;
+        result = instance.isColumnVektor();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of isRowVector method, of class BitMatrix2D.
+     */
+    @Test
+    public void testIsRowVector() {
+        System.out.println("isRowVector");
+        BitMatrix2D instance = new BitMatrix2D("101010");
+        boolean expResult = true;
+        boolean result = instance.isRowVector();
+        assertEquals(expResult, result);
+        instance = new BitMatrix2D("1\n1\n1");
+        expResult = false;
+        result = instance.isRowVector();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of changeBit method, of class BitMatrix2D.
+     */
+    @Test
+    public void testChangeBit() {
+        System.out.println("changeBit");
+        int n = 0;
+        BitMatrix2D instance = null;
+        instance.changeBit(n);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of isNullVector method, of class BitMatrix2D.
+     */
+    @Test
+    public void testIsNullVector() {
+        System.out.println("isNullVector");
+        BitMatrix2D instance = new BitMatrix2D("000000");
+        boolean expResult = true;
+        boolean result = instance.isNullVector();
+        assertEquals(expResult, result);
+        instance = new BitMatrix2D("0000100");
+        expResult = false;
+        result = instance.isNullVector();
+        assertEquals(expResult, result);
+        instance = new BitMatrix2D("0\n0\n0");
+        expResult = true;
+        result = instance.isNullVector();
+        assertEquals(expResult, result);
+        instance = new BitMatrix2D("0\n1\n0");
+        expResult = false;
+        result = instance.isNullVector();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of hammingDistance method, of class BitMatrix2D.
+     */
+    @Test
+    public void testHammingDistance() throws Exception {
+        System.out.println("hammingDistance");
+        BitMatrix2D bm = new BitMatrix2D("0101001");
+        BitMatrix2D instance = new BitMatrix2D("0101001");
+        int expResult = 0;
+        int result = instance.hammingDistance(bm);
+        assertEquals(expResult, result);
+        bm = new BitMatrix2D("010111");
+        instance = new BitMatrix2D("101001");
+        expResult = 5;
+        result = instance.hammingDistance(bm);
+    }
 }

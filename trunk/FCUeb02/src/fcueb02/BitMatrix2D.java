@@ -66,20 +66,6 @@ public class BitMatrix2D {
         this.array = new boolean[n][m];
     }
 
-//    /**
-//     * Bildet KEINE Einheitsmatrix!!!
-//     * @param bitLength
-//     */
-//    public BitMatrix2D(int bitLength) {
-//        this.ROWS = (int) Math.pow(2, bitLength);
-//        this.COLUMNS = bitLength;
-//        this.array = new boolean[ROWS][COLUMNS];
-//        boolean[] vector = new boolean[COLUMNS];
-//        for (int i = 0; i < ROWS; i++) {
-//            this.array[i] = vector.clone();
-//            vector = incVector(vector);
-//        }
-//    }
     /**
      * Bildet Einheitsmatrix mit der Bitlänge bitLength
      * @param bitLength
@@ -289,8 +275,17 @@ public class BitMatrix2D {
      * @return
      */
     public boolean isColumnVektor(){
-        return array.length == 1;
+        return COLUMNS == 1;
     }
+
+    /**
+     * ist this ein Zeilen Vektor?
+     * @return
+     */
+    public boolean isRowVector(){
+        return ROWS == 1;
+    }
+
     /**
      * Dreht ein Bit an der Stelle n
      * @param n
@@ -303,17 +298,16 @@ public class BitMatrix2D {
     }
 
     public boolean isNullVector() {
-        if (array.length == 1) {
-            for (int i = 0; i < array.length; i++) {
+        if (ROWS == 1) {
+            for (int i = 0; i < COLUMNS; i++) {
                 if (array[0][i] == true) {
                     return false;
                 }
             }
             return true;
         }
-        
-        if (array[0].length == 1) {
-            for (int i = 0; i < array[0].length; i++) {
+        if (COLUMNS == 1) {
+            for (int i = 0; i < ROWS; i++) {
                 if (array[i][0] == true) {
                     return false;
                 }
@@ -328,6 +322,31 @@ public class BitMatrix2D {
         int hash = 5;
         hash = 37 * hash + Arrays.deepHashCode(this.array);
         return hash;
+    }
+
+    /**
+     * Berechnet die hemmingdistanz zwischen this und bm
+     * @param bm
+     * @return
+     * @throws IsNoVectorException
+     */
+    public int hammingDistance(BitMatrix2D bm) throws IsNoVectorException{
+        if(!(this.getROWS() == bm.getROWS() && this.getCOLUMNS() == bm.getCOLUMNS()))
+            throw new IsNoVectorException();
+        
+        int res = 0;
+        if(this.isRowVector()){
+            for (int i = 0; i < this.ROWS; i++) {
+                if(this.array[i][0] != bm.array[i][0])
+                    res++;
+            }
+        }else{
+            for (int i = 0; i < this.COLUMNS; i++) {
+                if(this.array[0][i] != bm.array[0][i])
+                    res++;
+            }
+        }
+        return res;
     }
 
     /**
