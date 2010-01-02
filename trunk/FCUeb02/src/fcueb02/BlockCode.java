@@ -26,17 +26,24 @@ public class BlockCode {
      * Überprüft ob word korrekt ist und nimmt falls nicht, eine
      * (1bit) fehlerkorrektur vor.
      */
-    public String checkWord(String word) {
-        //TODO implement
-        throw new UnsupportedOperationException("Not yet implemented");
+    public BitMatrix2D checkWord(String word) {
+//        throw new UnsupportedOperationException("Not yet implemented");
+        BitMatrix2D syndroms[];
+        BitMatrix2D worth = null;
 
-//        BitMatrix2D checkWord = new BitMatrix2D(word);
-//        BitMatrix2D result = hMat.multiplyWith(checkWord);
-//
-//        if (!result.isNullVector()){
-//            ;
-//        }
-//        return "";
+        BitMatrix2D checkWord = new BitMatrix2D(word);
+        BitMatrix2D result = hMat.multiplyWith(checkWord);
+
+        if (!result.isNullVector()){
+            syndroms = calcSyndroms1Bit(hMat);
+
+            for (int i = 0; i < syndroms.length; i++)
+                if (syndroms[i] == result){
+                    checkWord.changeBit(i);
+                    worth = checkWord;
+                }
+        }
+        return worth;
     }
 
     /**
