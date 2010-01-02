@@ -284,6 +284,24 @@ public class BitMatrix2D {
         return true;
     }
 
+    /**
+     * Gibt wahrheitswert zurück ob Objekt ein Spaltenvektor ist
+     * @return
+     */
+    public boolean isColumnVektor(){
+        return array.length == 1;
+    }
+    /**
+     * Dreht ein Bit an der Stelle n
+     * @param n
+     */
+    public void changeBit(int n){
+        if (this.isColumnVektor())
+            this.array[0][n] &= false;
+        else
+            this.array[n][0] &= false;
+    }
+
     public boolean isNullVector() {
         if (array.length == 1) {
             for (int i = 0; i < array.length; i++) {
@@ -293,6 +311,7 @@ public class BitMatrix2D {
             }
             return true;
         }
+        
         if (array[0].length == 1) {
             for (int i = 0; i < array[0].length; i++) {
                 if (array[i][0] == true) {
