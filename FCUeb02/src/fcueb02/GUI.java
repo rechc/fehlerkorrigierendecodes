@@ -302,19 +302,13 @@ public class GUI extends javax.swing.JFrame {
      */
     private void checkButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkButtonActionPerformed
         String word = this.checkWord.getText();
-        String gmat = this.generatormatrix.getText();
-
-        BlockCode bc = new BlockCode(gmat);
-        BitMatrix2D result = bc.correctWord(word);
-
-        this.kontrollmatrix.setText(bc.hMat.toString());
-
+        String result = this.bc.correctWord(word);
         if (result == null){
             this.checkWordResult.setForeground(Color.green);
             this.checkWordResult.setText("Codewort ist Korrekt!");
         } else {
             this.checkWordResult.setForeground(Color.red);
-            this.checkWordResult.setText("Korrigierd in: " + result.toString());
+            this.checkWordResult.setText("Korrigiert in: " + result.toString());
         }
     }//GEN-LAST:event_checkButtonActionPerformed
 

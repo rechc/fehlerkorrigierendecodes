@@ -31,7 +31,7 @@ public class BlockCode {
      * Überprüft ob word korrekt ist und nimmt falls nicht, eine
      * (1bit) fehlerkorrektur vor.
      */
-    public BitMatrix2D correctWord(String word) {
+    public String correctWord(String word) {
         BitMatrix2D syndroms[];
 
         BitMatrix2D checkWord = new BitMatrix2D(word);
@@ -43,7 +43,7 @@ public class BlockCode {
             for (int i = 0; i < syndroms.length; i++) {
                 if (syndroms[i].equals(result.transpose())) {
                     checkWord.changeBit(i);
-                    return checkWord;
+                    return checkWord.toString();
                 }
             }
         }
