@@ -19,6 +19,7 @@ public class BlockCode {
     public BlockCode(String generatorMatrix) {
         gMat = new BitMatrix2D(generatorMatrix);
         hMat = calcHMat(this.gMat);
+        codewords = calcCodewords();
         syndroms1Bit = calcSyndroms1Bit(this.hMat);
         syndroms2Bit = calcSyndroms2Bit(this.hMat);
         minHemmingDist = calcMinHemmingDistance();
@@ -67,7 +68,7 @@ public class BlockCode {
      * Berechnet die Codewoerter zu einer Generatormatrix
      * @return
      */
-    public BitMatrix2D[] codewords() {
+    public BitMatrix2D[] calcCodewords() {
         final int ROWS = gMat.getROWS();
         final int COLS = gMat.getCOLUMNS();
         BitMatrix2D[] result = new BitMatrix2D[COLS];

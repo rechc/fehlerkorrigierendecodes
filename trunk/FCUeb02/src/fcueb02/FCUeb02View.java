@@ -319,7 +319,7 @@ public class FCUeb02View extends FrameView {
 //       BitMatrix2D matrix = new BitMatrix2D(this.tp_gMat.getText());
 
         if (this.rb_codeword.isSelected())
-            result = manager.codewords();
+            result = manager.calcCodewords();
         else if (this.jRadioButton2.isSelected())
             ;
         else if (this.jRadioButton3.isSelected())
