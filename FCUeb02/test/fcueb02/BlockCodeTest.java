@@ -40,9 +40,9 @@ public class BlockCodeTest {
     @Test
     public void testCorrectWord(){
         System.out.println("correctWord");
-        BlockCode bc = new BlockCode("1000011\n0100101\n0010110\n0001111");
-        BitMatrix2D result = bc.correctWord("1101010"); //richtiges Word--> 0101010
-        BitMatrix2D expResult = new BitMatrix2D("0101010");
+        BlockCode instance = new BlockCode("1000011\n0100101\n0010110\n0001111");
+        String result = instance.correctWord("1101010");
+        String expResult = "0101010";
         assertEquals(expResult, result);
     }
 
