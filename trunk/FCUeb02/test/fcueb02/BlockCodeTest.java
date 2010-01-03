@@ -130,15 +130,15 @@ public class BlockCodeTest {
                                 new BitMatrix2D("0011001"),
                                 new BitMatrix2D("0101010"),
                                 new BitMatrix2D("0110011"),
-                                new BitMatrix2D("0000000"),//<-- muss noch berechnet werden
-                                new BitMatrix2D("0000000"),//<-- muss noch berechnet werden
-                                new BitMatrix2D("0000000"),//<-- muss noch berechnet werden
+                                new BitMatrix2D("0111100"),
+                                new BitMatrix2D("1000011"),
+                                new BitMatrix2D("1001100"),
                                 new BitMatrix2D("1010101"),
-                                new BitMatrix2D("0000000"),//<-- muss noch berechnet werden
-                                new BitMatrix2D("0000000"),//<-- muss noch berechnet werden
-                                new BitMatrix2D("0000000"),//<-- muss noch berechnet werden
-                                new BitMatrix2D("0000000"),//<-- muss noch berechnet werden
-                                new BitMatrix2D("1111111")};
+                                new BitMatrix2D("1011010"),
+                                new BitMatrix2D("1011010"),
+                                new BitMatrix2D("1100110"),
+                                new BitMatrix2D("1101001"),
+                                new BitMatrix2D("1110000")};
         BitMatrix2D[] result = instance.calcCodewords();
         assertEquals(expResult.length, result.length);
         for(int i=0; i < expResult.length;i++)
