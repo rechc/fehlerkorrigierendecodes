@@ -215,18 +215,18 @@ public class BitMatrix2DTest {
     }
 
     /**
-     * Test of isColumnVektor method, of class BitMatrix2D.
+     * Test of isColumnVector method, of class BitMatrix2D.
      */
     @Test
     public void testIsColumnVektor() {
         System.out.println("isColumnVektor");
         BitMatrix2D instance = new BitMatrix2D("1011");
         boolean expResult = false;
-        boolean result = instance.isColumnVektor();
+        boolean result = instance.isColumnVector();
         assertEquals(expResult, result);
         instance = new BitMatrix2D("1\n1\n1\n0");
         expResult = true;
-        result = instance.isColumnVektor();
+        result = instance.isColumnVector();
         assertEquals(expResult, result);
     }
 

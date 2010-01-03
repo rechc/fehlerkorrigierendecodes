@@ -274,7 +274,7 @@ public class BitMatrix2D {
      * Gibt wahrheitswert zurück ob Objekt ein Spaltenvektor ist
      * @return
      */
-    public boolean isColumnVektor(){
+    public boolean isColumnVector(){
         return COLUMNS == 1;
     }
 
@@ -291,7 +291,7 @@ public class BitMatrix2D {
      * @param n
      */
     public void changeBit(int n){
-        if (this.isColumnVektor())
+        if (this.isRowVector())
             if (this.array[0][n] == false)
                 this.array[0][n] = true;
             else
