@@ -22,6 +22,8 @@ import org.jdesktop.application.Action;
  */
 public class GUI extends javax.swing.JFrame {
 
+    BlockCode bc;
+
     /** Creates new form GUIDesginTest */
     public GUI() {
         initComponents();
@@ -191,6 +193,7 @@ public class GUI extends javax.swing.JFrame {
         checkWord.setName("checkWord"); // NOI18N
 
         checkButton.setText(resourceMap.getString("checkButton.text")); // NOI18N
+        checkButton.setEnabled(false);
         checkButton.setName("checkButton"); // NOI18N
         checkButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -284,19 +287,13 @@ public class GUI extends javax.swing.JFrame {
      */
     private void calcButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calcButtonActionPerformed
         String gmat = this.generatormatrix.getText();
-        BlockCode bc = new BlockCode(gmat);
-
-        this.kontrollmatrix.setText(bc.hMat.toString());
-
-        BitMatrix2D[] eSyndrome = BlockCode.calcSyndroms1Bit(bc.hMat); //wolltest du die so generieren?
-        BitMatrix2D[] zSyndrome = BlockCode.calcSyndroms2Bit(bc.hMat);
-//        BitMatrix2D[] codewoerter = bc.codewords();
-        int distance = bc.minHemmingDist; // geht so wohl nicht
-
-        this.einBitSyndrome.setText(eSyndrome.toString());
-        this.zweiBitSyndrome.setText(zSyndrome.toString());
-//        this.codeWoerter.setText(codewoerter.toString());
-        this.hamming.setText("min Hammingdistance: " + distance);
+        this.bc = new BlockCode(gmat);
+        this.kontrollmatrix.setText(bc.getHMatAsString());
+        this.einBitSyndrome.setText(bc.getSyndroms1BitAsString());
+        this.zweiBitSyndrome.setText(bc.getSyndroms2BitAsString());
+        this.codeWoerter.setText(bc.getCodewordsAsString());
+        this.hamming.setText("min Hammingdistance: " + bc.getMinHemmingDist());
+        this.checkButton.setEnabled(true);
     }//GEN-LAST:event_calcButtonActionPerformed
 
     /**
