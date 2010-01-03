@@ -42,7 +42,7 @@ public class BlockCodeTest {
         System.out.println("correctWord");
         BlockCode instance = new BlockCode("1000011\n0100101\n0010110\n0001111");
         String result = instance.correctWord("1101010");
-        String expResult = "0101010";
+        String expResult = "0,1,0,1,0,1,0";
         assertEquals(expResult, result);
     }
 
@@ -115,21 +115,6 @@ public class BlockCodeTest {
         assertTrue(expResult.length == result.length);
         for(int i=0; i<expResult.length;i++)
             assertEquals(expResult[i],result[i]);
-    }
-
-    /**
-     * Test of checkWord method, of class BlockCode.
-     */
-    @Test
-    public void testCheckWord() {
-        System.out.println("checkWord");
-        BitMatrix2D result_2 = null;
-        BlockCode instance = new BlockCode();
-        boolean expResult = false;
-        boolean result = instance.checkWord(result_2);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
