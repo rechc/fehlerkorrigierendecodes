@@ -252,11 +252,11 @@ public class BitMatrix2DTest {
     @Test
     public void testChangeBit() {
         System.out.println("changeBit");
-        int n = 0;
-        BitMatrix2D instance = null;
+        int n = 1;
+        BitMatrix2D instance = new BitMatrix2D("101");
+        BitMatrix2D expResult = new BitMatrix2D("111");
         instance.changeBit(n);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(expResult, instance);
     }
 
     /**
