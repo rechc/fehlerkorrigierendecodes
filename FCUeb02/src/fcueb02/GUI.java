@@ -20,10 +20,10 @@ import org.jdesktop.application.Action;
  *
  * @author tim
  */
-public class GUIDesginTest extends javax.swing.JFrame {
+public class GUI extends javax.swing.JFrame {
 
     /** Creates new form GUIDesginTest */
-    public GUIDesginTest() {
+    public GUI() {
         initComponents();
     }
 
@@ -77,7 +77,7 @@ public class GUIDesginTest extends javax.swing.JFrame {
 
         jPanel1.setName("jPanel1"); // NOI18N
 
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(fcueb02.FCUeb02App.class).getContext().getResourceMap(GUIDesginTest.class);
+        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(fcueb02.FCUeb02App.class).getContext().getResourceMap(GUI.class);
         calcButton.setText(resourceMap.getString("calcButton.text")); // NOI18N
         calcButton.setName("calcButton"); // NOI18N
         calcButton.addActionListener(new java.awt.event.ActionListener() {
@@ -210,9 +210,12 @@ public class GUIDesginTest extends javax.swing.JFrame {
                 .addGap(35, 35, 35)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(checkButton)
-                    .addComponent(checkWord, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(checkWordResult, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(55, Short.MAX_VALUE))
+                    .addComponent(checkWord, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(checkWordResult, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
+                .addGap(18, 18, 18))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -221,9 +224,9 @@ public class GUIDesginTest extends javax.swing.JFrame {
                 .addComponent(checkWord, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(checkButton)
-                .addGap(34, 34, 34)
+                .addGap(32, 32, 32)
                 .addComponent(checkWordResult, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
 
         tabPanel.addTab(resourceMap.getString("jPanel2.TabConstraints.tabTitle"), jPanel2); // NOI18N
@@ -233,7 +236,7 @@ public class GUIDesginTest extends javax.swing.JFrame {
         fileMenu.setText(resourceMap.getString("fileMenu.text")); // NOI18N
         fileMenu.setName("fileMenu"); // NOI18N
 
-        javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(fcueb02.FCUeb02App.class).getContext().getActionMap(GUIDesginTest.class, this);
+        javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(fcueb02.FCUeb02App.class).getContext().getActionMap(GUI.class, this);
         exitMenuItem.setAction(actionMap.get("quit")); // NOI18N
         exitMenuItem.setName("exitMenuItem"); // NOI18N
         fileMenu.add(exitMenuItem);
@@ -287,12 +290,12 @@ public class GUIDesginTest extends javax.swing.JFrame {
 
         BitMatrix2D[] eSyndrome = BlockCode.calcSyndroms1Bit(bc.hMat); //wolltest du die so generieren?
         BitMatrix2D[] zSyndrome = BlockCode.calcSyndroms2Bit(bc.hMat);
-        BitMatrix2D[] codewoerter = bc.codewords();
+//        BitMatrix2D[] codewoerter = bc.codewords();
         int distance = bc.minHemmingDist; // geht so wohl nicht
 
         this.einBitSyndrome.setText(eSyndrome.toString());
         this.zweiBitSyndrome.setText(zSyndrome.toString());
-        this.codeWoerter.setText(codewoerter.toString());
+//        this.codeWoerter.setText(codewoerter.toString());
         this.hamming.setText("min Hammingdistance: " + distance);
     }//GEN-LAST:event_calcButtonActionPerformed
 
@@ -309,7 +312,7 @@ public class GUIDesginTest extends javax.swing.JFrame {
 
         this.kontrollmatrix.setText(bc.hMat.toString());
 
-        if (bc.checkWord(result)){
+        if (result == null){
             this.checkWordResult.setForeground(Color.green);
             this.checkWordResult.setText("Codewort ist Korrekt!");
         } else {
@@ -325,7 +328,7 @@ public class GUIDesginTest extends javax.swing.JFrame {
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new GUIDesginTest().setVisible(true);
+                new GUI().setVisible(true);
             }
         });
     }
