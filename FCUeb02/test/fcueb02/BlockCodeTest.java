@@ -167,11 +167,9 @@ public class BlockCodeTest {
     @Test
     public void testGetMinHemmingDist() {
         System.out.println("getMinHemmingDist");
-        BlockCode instance = new BlockCode();
-        int expResult = 0;
+        BlockCode instance = new BlockCode("1000011\n0100101\n0010110\n0001111");
+        int expResult = 4711; // 4711 is fakewert
         int result = instance.getMinHemmingDist();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 }
