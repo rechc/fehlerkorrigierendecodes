@@ -14,6 +14,7 @@ package fcueb02;
 import java.awt.Color;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import org.jdesktop.application.Action;
 
 /**
@@ -23,6 +24,8 @@ import org.jdesktop.application.Action;
 public class GUI extends javax.swing.JFrame {
 
     BlockCode bc;
+    private final static String ERROR_WRONGINPUT = "Falsche Eingabe";
+    private final static String ERROR_TITLE = "error";
 
     /** Creates new form GUIDesginTest */
     public GUI() {
@@ -286,14 +289,18 @@ public class GUI extends javax.swing.JFrame {
      * @param evt
      */
     private void calcButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calcButtonActionPerformed
-        String gmat = this.generatormatrix.getText();
-        this.bc = new BlockCode(gmat);
-        this.kontrollmatrix.setText(bc.getHMatAsString());
-        this.einBitSyndrome.setText(bc.getSyndroms1BitAsString());
-        this.zweiBitSyndrome.setText(bc.getSyndroms2BitAsString());
-        this.codeWoerter.setText(bc.getCodewordsAsString());
-        this.hamming.setText("min Hammingdistance: " + bc.getMinHemmingDist());
-        this.checkButton.setEnabled(true);
+        String gmat = this.generatormatrix.getText().trim();
+        if(!gmat.matches("[01]{7}\n[01]{7}\n[01]{7}\n[01]{7}")){
+            JOptionPane.showMessageDialog(this, ERROR_WRONGINPUT, ERROR_TITLE, JOptionPane.ERROR_MESSAGE);
+        }else{
+            this.bc = new BlockCode(gmat);
+            this.kontrollmatrix.setText(bc.getHMatAsString());
+            this.einBitSyndrome.setText(bc.getSyndroms1BitAsString());
+            this.zweiBitSyndrome.setText(bc.getSyndroms2BitAsString());
+            this.codeWoerter.setText(bc.getCodewordsAsString());
+            this.hamming.setText("min Hammingdistance: " + bc.getMinHemmingDist());
+            this.checkButton.setEnabled(true);
+        }
     }//GEN-LAST:event_calcButtonActionPerformed
 
     /**
@@ -301,14 +308,18 @@ public class GUI extends javax.swing.JFrame {
      * @param evt
      */
     private void checkButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkButtonActionPerformed
-        String word = this.checkWord.getText();
-        String result = this.bc.correctWord(word);
-        if (result == null){
-            this.checkWordResult.setForeground(Color.green);
-            this.checkWordResult.setText("Codewort ist Korrekt!");
-        } else {
-            this.checkWordResult.setForeground(Color.red);
-            this.checkWordResult.setText("Korrigiert in: " + result.toString());
+        String word = this.checkWord.getText().trim();
+        if(!word.matches("[01]{7}")){
+            JOptionPane.showMessageDialog(this, ERROR_WRONGINPUT, ERROR_TITLE, JOptionPane.ERROR_MESSAGE);
+        }else{
+            String result = this.bc.correctWord(word);
+            if (result == null){
+                this.checkWordResult.setForeground(Color.green);
+                this.checkWordResult.setText("Codewort ist Korrekt!");
+            } else {
+                this.checkWordResult.setForeground(Color.red);
+                this.checkWordResult.setText("Korrigiert in: " + result.toString());
+            }
         }
     }//GEN-LAST:event_checkButtonActionPerformed
 
