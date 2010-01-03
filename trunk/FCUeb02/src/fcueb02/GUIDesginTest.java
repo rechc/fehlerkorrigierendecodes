@@ -11,6 +11,7 @@
 
 package fcueb02;
 
+import java.awt.Color;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import org.jdesktop.application.Action;
@@ -46,21 +47,25 @@ public class GUIDesginTest extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        calcButton = new javax.swing.JButton();
+        hamming = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jButton1 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanel2 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
+        generatormatrix = new javax.swing.JTextPane();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        kontrollmatrix = new javax.swing.JTextPane();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        tabPanel = new javax.swing.JTabbedPane();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTextArea3 = new javax.swing.JTextArea();
+        einBitSyndrome = new javax.swing.JTextArea();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTextArea4 = new javax.swing.JTextArea();
+        zweiBitSyndrome = new javax.swing.JTextArea();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        codeWoerter = new javax.swing.JTextArea();
+        jPanel2 = new javax.swing.JPanel();
+        checkWord = new javax.swing.JTextField();
+        checkButton = new javax.swing.JButton();
+        checkWordResult = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         javax.swing.JMenu fileMenu = new javax.swing.JMenu();
         javax.swing.JMenuItem exitMenuItem = new javax.swing.JMenuItem();
@@ -72,20 +77,37 @@ public class GUIDesginTest extends javax.swing.JFrame {
 
         jPanel1.setName("jPanel1"); // NOI18N
 
+        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(fcueb02.FCUeb02App.class).getContext().getResourceMap(GUIDesginTest.class);
+        calcButton.setText(resourceMap.getString("calcButton.text")); // NOI18N
+        calcButton.setName("calcButton"); // NOI18N
+        calcButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                calcButtonActionPerformed(evt);
+            }
+        });
+
+        hamming.setFont(resourceMap.getFont("hamming.font")); // NOI18N
+        hamming.setText(resourceMap.getString("hamming.text")); // NOI18N
+        hamming.setName("hamming"); // NOI18N
+
         jScrollPane1.setName("jScrollPane1"); // NOI18N
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(fcueb02.FCUeb02App.class).getContext().getResourceMap(GUIDesginTest.class);
-        jTextArea1.setText(resourceMap.getString("jTextArea1.text")); // NOI18N
-        jTextArea1.setName("jTextArea1"); // NOI18N
-        jScrollPane1.setViewportView(jTextArea1);
+        generatormatrix.setText(resourceMap.getString("generatormatrix.text")); // NOI18N
+        generatormatrix.setName("generatormatrix"); // NOI18N
+        jScrollPane1.setViewportView(generatormatrix);
 
-        jButton1.setText(resourceMap.getString("jButton1.text")); // NOI18N
-        jButton1.setName("jButton1"); // NOI18N
+        jScrollPane5.setName("jScrollPane5"); // NOI18N
 
-        jLabel2.setText(resourceMap.getString("jLabel2.text")); // NOI18N
-        jLabel2.setName("jLabel2"); // NOI18N
+        kontrollmatrix.setBackground(resourceMap.getColor("kontrollmatrix.background")); // NOI18N
+        kontrollmatrix.setEditable(false);
+        kontrollmatrix.setName("kontrollmatrix"); // NOI18N
+        jScrollPane5.setViewportView(kontrollmatrix);
+
+        jLabel3.setText(resourceMap.getString("jLabel3.text")); // NOI18N
+        jLabel3.setName("jLabel3"); // NOI18N
+
+        jLabel4.setText(resourceMap.getString("jLabel4.text")); // NOI18N
+        jLabel4.setName("jLabel4"); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -93,38 +115,92 @@ public class GUIDesginTest extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(60, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(34, 34, 34)
+                .addComponent(calcButton)
+                .addContainerGap(86, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel3)
+                .addContainerGap(82, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel4)
+                .addContainerGap(95, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(35, 35, 35)
-                        .addComponent(jButton1))
-                    .addComponent(jLabel2))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(hamming, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
+                        .addGap(60, 60, 60))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addGap(43, 43, 43))
+                .addComponent(jLabel3)
+                .addGap(6, 6, 6)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(calcButton)
+                .addGap(16, 16, 16)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(hamming, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
-        jTabbedPane1.setName("jTabbedPane1"); // NOI18N
+        tabPanel.setName("tabPanel"); // NOI18N
+
+        jScrollPane3.setName("jScrollPane3"); // NOI18N
+
+        einBitSyndrome.setColumns(20);
+        einBitSyndrome.setRows(5);
+        einBitSyndrome.setName("einBitSyndrome"); // NOI18N
+        jScrollPane3.setViewportView(einBitSyndrome);
+
+        tabPanel.addTab(resourceMap.getString("jScrollPane3.TabConstraints.tabTitle"), jScrollPane3); // NOI18N
+
+        jScrollPane4.setName("jScrollPane4"); // NOI18N
+
+        zweiBitSyndrome.setColumns(20);
+        zweiBitSyndrome.setRows(5);
+        zweiBitSyndrome.setName("zweiBitSyndrome"); // NOI18N
+        jScrollPane4.setViewportView(zweiBitSyndrome);
+
+        tabPanel.addTab(resourceMap.getString("jScrollPane4.TabConstraints.tabTitle"), jScrollPane4); // NOI18N
+
+        jScrollPane2.setName("jScrollPane2"); // NOI18N
+
+        codeWoerter.setColumns(20);
+        codeWoerter.setRows(5);
+        codeWoerter.setName("codeWoerter"); // NOI18N
+        jScrollPane2.setViewportView(codeWoerter);
+
+        tabPanel.addTab(resourceMap.getString("jScrollPane2.TabConstraints.tabTitle"), jScrollPane2); // NOI18N
 
         jPanel2.setName("jPanel2"); // NOI18N
 
-        jTextField1.setText(resourceMap.getString("jTextField1.text")); // NOI18N
-        jTextField1.setName("jTextField1"); // NOI18N
+        checkWord.setText(resourceMap.getString("checkWord.text")); // NOI18N
+        checkWord.setName("checkWord"); // NOI18N
 
-        jButton2.setText(resourceMap.getString("jButton2.text")); // NOI18N
-        jButton2.setName("jButton2"); // NOI18N
+        checkButton.setText(resourceMap.getString("checkButton.text")); // NOI18N
+        checkButton.setName("checkButton"); // NOI18N
+        checkButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkButtonActionPerformed(evt);
+            }
+        });
 
-        jLabel1.setText(resourceMap.getString("jLabel1.text")); // NOI18N
-        jLabel1.setName("jLabel1"); // NOI18N
+        checkWordResult.setFont(resourceMap.getFont("checkWordResult.font")); // NOI18N
+        checkWordResult.setText(resourceMap.getString("checkWordResult.text")); // NOI18N
+        checkWordResult.setName("checkWordResult"); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -133,51 +209,24 @@ public class GUIDesginTest extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(35, 35, 35)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jButton2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(146, Short.MAX_VALUE))
+                    .addComponent(checkButton)
+                    .addComponent(checkWord, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(checkWordResult, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(55, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(68, 68, 68)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(checkWord, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton2)
-                .addGap(48, 48, 48)
-                .addComponent(jLabel1)
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addComponent(checkButton)
+                .addGap(34, 34, 34)
+                .addComponent(checkWordResult, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(43, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab(resourceMap.getString("jPanel2.TabConstraints.tabTitle"), jPanel2); // NOI18N
-
-        jScrollPane2.setName("jScrollPane2"); // NOI18N
-
-        jTextArea2.setColumns(20);
-        jTextArea2.setRows(5);
-        jTextArea2.setName("jTextArea2"); // NOI18N
-        jScrollPane2.setViewportView(jTextArea2);
-
-        jTabbedPane1.addTab(resourceMap.getString("jScrollPane2.TabConstraints.tabTitle"), jScrollPane2); // NOI18N
-
-        jScrollPane3.setName("jScrollPane3"); // NOI18N
-
-        jTextArea3.setColumns(20);
-        jTextArea3.setRows(5);
-        jTextArea3.setName("jTextArea3"); // NOI18N
-        jScrollPane3.setViewportView(jTextArea3);
-
-        jTabbedPane1.addTab(resourceMap.getString("jScrollPane3.TabConstraints.tabTitle"), jScrollPane3); // NOI18N
-
-        jScrollPane4.setName("jScrollPane4"); // NOI18N
-
-        jTextArea4.setColumns(20);
-        jTextArea4.setRows(5);
-        jTextArea4.setName("jTextArea4"); // NOI18N
-        jScrollPane4.setViewportView(jTextArea4);
-
-        jTabbedPane1.addTab(resourceMap.getString("jScrollPane4.TabConstraints.tabTitle"), jScrollPane4); // NOI18N
+        tabPanel.addTab(resourceMap.getString("jPanel2.TabConstraints.tabTitle"), jPanel2); // NOI18N
 
         jMenuBar1.setName("jMenuBar1"); // NOI18N
 
@@ -209,22 +258,65 @@ public class GUIDesginTest extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 287, Short.MAX_VALUE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                .addComponent(tabPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(44, 44, 44))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 262, Short.MAX_VALUE)
+                    .addComponent(tabPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    /**
+     * calcButton
+     * @param evt
+     */
+    private void calcButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calcButtonActionPerformed
+        String gmat = this.generatormatrix.getText();
+        BlockCode bc = new BlockCode(gmat);
+
+        this.kontrollmatrix.setText(bc.hMat.toString());
+
+        BitMatrix2D[] eSyndrome = BlockCode.calcSyndroms1Bit(bc.hMat); //wolltest du die so generieren?
+        BitMatrix2D[] zSyndrome = BlockCode.calcSyndroms2Bit(bc.hMat);
+        BitMatrix2D[] codewoerter = bc.codewords();
+        int distance = bc.minHemmingDist; // geht so wohl nicht
+
+        this.einBitSyndrome.setText(eSyndrome.toString());
+        this.zweiBitSyndrome.setText(zSyndrome.toString());
+        this.codeWoerter.setText(codewoerter.toString());
+        this.hamming.setText("min Hammingdistance: " + distance);
+    }//GEN-LAST:event_calcButtonActionPerformed
+
+    /**
+     * checkButton
+     * @param evt
+     */
+    private void checkButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkButtonActionPerformed
+        String word = this.checkWord.getText();
+        String gmat = this.generatormatrix.getText();
+
+        BlockCode bc = new BlockCode(gmat);
+        BitMatrix2D result = bc.correctWord(word);
+
+        this.kontrollmatrix.setText(bc.hMat.toString());
+
+        if (bc.checkWord(result)){
+            this.checkWordResult.setForeground(Color.green);
+            this.checkWordResult.setText("Codewort ist Korrekt!");
+        } else {
+            this.checkWordResult.setForeground(Color.red);
+            this.checkWordResult.setText("Korrigierd in: " + result.toString());
+        }
+    }//GEN-LAST:event_checkButtonActionPerformed
 
 
     /**
@@ -239,10 +331,16 @@ public class GUIDesginTest extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JButton calcButton;
+    private javax.swing.JButton checkButton;
+    private javax.swing.JTextField checkWord;
+    private javax.swing.JLabel checkWordResult;
+    private javax.swing.JTextArea codeWoerter;
+    private javax.swing.JTextArea einBitSyndrome;
+    private javax.swing.JTextPane generatormatrix;
+    private javax.swing.JLabel hamming;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -250,12 +348,10 @@ public class GUIDesginTest extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextArea jTextArea2;
-    private javax.swing.JTextArea jTextArea3;
-    private javax.swing.JTextArea jTextArea4;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JTextPane kontrollmatrix;
+    private javax.swing.JTabbedPane tabPanel;
+    private javax.swing.JTextArea zweiBitSyndrome;
     // End of variables declaration//GEN-END:variables
 
     private JDialog aboutBox;
