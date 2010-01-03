@@ -294,6 +294,7 @@ public class GUI extends javax.swing.JFrame {
         this.codeWoerter.setText(bc.getCodewordsAsString());
         this.hamming.setText("min Hammingdistance: " + bc.getMinHemmingDist());
         this.checkButton.setEnabled(true);
+        this.checkButton.setEnabled(true);
     }//GEN-LAST:event_calcButtonActionPerformed
 
     /**
