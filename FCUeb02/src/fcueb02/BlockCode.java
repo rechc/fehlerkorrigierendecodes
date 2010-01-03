@@ -126,12 +126,12 @@ public class BlockCode {
      * @return
      */
     private int calcMinHemmingDistance() {
-        int minDist = syndroms1Bit[0].getCOLUMNS();
+        int minDist = codewords[0].getCOLUMNS();
         int currentDist = 0;
-        for (int i = 0; i < syndroms1Bit.length - 1; i++) {
-            for (int j = i + 1; j < syndroms1Bit.length; j++) {
+        for (int i = 0; i < codewords.length - 1; i++) {
+            for (int j = i + 1; j < codewords.length; j++) {
                 try {
-                    currentDist = syndroms1Bit[i].hammingDistance(syndroms1Bit[j]);
+                    currentDist = codewords[i].hammingDistance(codewords[j]);
                     if(minDist > currentDist)
                         minDist = currentDist;
                 } catch (IsNoVectorException ex) {
