@@ -23,8 +23,7 @@ public class BlockCode {
         minHemmingDist = calcMinHemmingDistance();
     }
 
-    public BlockCode() {
-    }
+    public BlockCode() {}
 
     /**
      * Überprüft ob word korrekt ist und nimmt falls nicht, eine
@@ -32,22 +31,21 @@ public class BlockCode {
      */
     public BitMatrix2D correctWord(String word) {
         BitMatrix2D syndroms[];
-        BitMatrix2D worth = null;
 
         BitMatrix2D checkWord = new BitMatrix2D(word);
-        BitMatrix2D result = hMat.multiplyWith(checkWord);
+        BitMatrix2D result = hMat.multiplyWith(checkWord.transpose());
 
         if (!this.checkWord(result)) {
             syndroms = calcSyndroms1Bit(hMat);
 
             for (int i = 0; i < syndroms.length; i++) {
-                if (syndroms[i] == result) {
+                if (syndroms[i].equals(result.transpose())) {
                     checkWord.changeBit(i);
-                    worth = checkWord;
+                    return checkWord;
                 }
             }
         }
-        return worth; //bei toString passiert nichts, weil Wert hier null ist
+        return null; //bei toString passiert nichts, weil Wert hier null ist
     }
 
     public boolean checkWord(BitMatrix2D result) {
