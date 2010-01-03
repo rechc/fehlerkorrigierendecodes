@@ -16,7 +16,8 @@ public class FCUeb02App extends SingleFrameApplication {
      * At startup create and show the main frame of the application.
      */
     @Override protected void startup() {
-        show(new FCUeb02View(this));
+//        show(new FCUeb02View(this));
+        show(new GUI());
     }
 
     /**
