@@ -78,11 +78,12 @@ public class GUI extends javax.swing.JFrame {
         javax.swing.JMenuItem aboutMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(fcueb02.FCUeb02App.class).getContext().getResourceMap(GUI.class);
+        setTitle(resourceMap.getString("Form.title")); // NOI18N
         setName("Form"); // NOI18N
 
         jPanel1.setName("jPanel1"); // NOI18N
 
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(fcueb02.FCUeb02App.class).getContext().getResourceMap(GUI.class);
         calcButton.setText(resourceMap.getString("calcButton.text")); // NOI18N
         calcButton.setName("calcButton"); // NOI18N
         calcButton.addActionListener(new java.awt.event.ActionListener() {
@@ -120,29 +121,24 @@ public class GUI extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(60, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addComponent(calcButton)
-                .addContainerGap(86, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel3)
-                .addContainerGap(82, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel4)
-                .addContainerGap(95, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addContainerGap(82, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addContainerGap(95, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(hamming, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
                         .addContainerGap())
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
-                        .addGap(60, 60, 60))))
+                        .addGap(60, 60, 60))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(calcButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE))
+                        .addContainerGap(60, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -151,8 +147,8 @@ public class GUI extends javax.swing.JFrame {
                 .addGap(6, 6, 6)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(calcButton)
-                .addGap(16, 16, 16)
+                .addComponent(calcButton, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -166,6 +162,7 @@ public class GUI extends javax.swing.JFrame {
         jScrollPane3.setName("jScrollPane3"); // NOI18N
 
         einBitSyndrome.setColumns(20);
+        einBitSyndrome.setEditable(false);
         einBitSyndrome.setRows(5);
         einBitSyndrome.setName("einBitSyndrome"); // NOI18N
         jScrollPane3.setViewportView(einBitSyndrome);
@@ -175,6 +172,7 @@ public class GUI extends javax.swing.JFrame {
         jScrollPane4.setName("jScrollPane4"); // NOI18N
 
         zweiBitSyndrome.setColumns(20);
+        zweiBitSyndrome.setEditable(false);
         zweiBitSyndrome.setRows(5);
         zweiBitSyndrome.setName("zweiBitSyndrome"); // NOI18N
         jScrollPane4.setViewportView(zweiBitSyndrome);
@@ -184,6 +182,7 @@ public class GUI extends javax.swing.JFrame {
         jScrollPane2.setName("jScrollPane2"); // NOI18N
 
         codeWoerter.setColumns(20);
+        codeWoerter.setEditable(false);
         codeWoerter.setRows(5);
         codeWoerter.setName("codeWoerter"); // NOI18N
         jScrollPane2.setViewportView(codeWoerter);
@@ -193,6 +192,7 @@ public class GUI extends javax.swing.JFrame {
         jPanel2.setName("jPanel2"); // NOI18N
 
         checkWord.setText(resourceMap.getString("checkWord.text")); // NOI18N
+        checkWord.setToolTipText(resourceMap.getString("checkWord.toolTipText")); // NOI18N
         checkWord.setName("checkWord"); // NOI18N
 
         checkButton.setText(resourceMap.getString("checkButton.text")); // NOI18N

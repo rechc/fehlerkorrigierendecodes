@@ -157,6 +157,7 @@ public class BlockCode {
         for(BitMatrix2D syndrom : syndroms1Bit){
             sb.append(syndrom).append("\n");
         }
+        sb.deleteCharAt(sb.length() -1);
         return sb.toString();
     }
 
@@ -165,6 +166,7 @@ public class BlockCode {
         for(BitMatrix2D syndrom : syndroms2Bit){
             sb.append(syndrom).append("\n");
         }
+        sb.deleteCharAt(sb.length() -1);
         return sb.toString();
     }
 
@@ -173,6 +175,7 @@ public class BlockCode {
         for(BitMatrix2D codeword : codewords){
             sb.append(codeword).append("\n");
         }
+        sb.deleteCharAt(sb.length() -1);
         return sb.toString();
     }
 }
