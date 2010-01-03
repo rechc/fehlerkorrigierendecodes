@@ -66,7 +66,7 @@ public class BlockCode {
      * Berechnet die Codewoerter zu einer Generatormatrix
      * @return
      */
-    public BitMatrix2D[] codewoerter() {
+    public BitMatrix2D[] codewords() {
         final int ROWS = gMat.getROWS();
         final int COLS = gMat.getCOLUMNS();
         BitMatrix2D[] result = new BitMatrix2D[COLS];
