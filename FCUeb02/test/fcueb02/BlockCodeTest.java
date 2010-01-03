@@ -167,7 +167,7 @@ public class BlockCodeTest {
     public void testGetMinHemmingDist() {
         System.out.println("getMinHemmingDist");
         BlockCode instance = new BlockCode("1000011\n0100101\n0010110\n0001111");
-        int expResult = 4711; // 4711 is fakewert
+        int expResult = 3;
         int result = instance.getMinHemmingDist();
         assertEquals(expResult, result);
     }

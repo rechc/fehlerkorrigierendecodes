@@ -342,13 +342,13 @@ public class BitMatrix2D {
         
         int res = 0;
         if(this.isRowVector()){
-            for (int i = 0; i < this.ROWS; i++) {
-                if(this.array[i][0] != bm.array[i][0])
+            for (int i = 0; i < this.COLUMNS; i++) {
+                if(this.array[0][i] != bm.array[0][i])
                     res++;
             }
         }else{
-            for (int i = 0; i < this.COLUMNS; i++) {
-                if(this.array[0][i] != bm.array[0][i])
+            for (int i = 0; i < this.ROWS; i++) {
+                if(this.array[i][0] != bm.array[i][0])
                     res++;
             }
         }
