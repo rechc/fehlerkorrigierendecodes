@@ -37,10 +37,18 @@ public class BlockCodeTest {
     public void tearDown() {
     }
 
+    @Test
+    public void testCorrectWord(){
+        System.out.println("correctWord");
+        BlockCode bc = new BlockCode("1000011\n0100101\n0010110\n0001111");
+        BitMatrix2D result = bc.correctWord("1101010"); //richtiges Word--> 0101010
+        BitMatrix2D expResult = new BitMatrix2D("0101010");
+        assertEquals(expResult, result);
+    }
 
     @Test
-    public void testCodeWoerter(){
-       System.out.println("codewoerter");
+    public void testCodeWords(){
+       System.out.println("codewords");
        fail("The test case is a prototype.");
        BitMatrix2D gMat = new BitMatrix2D("1000011\n0100101\n0010110\n0001111");
        BitMatrix2D[] expResult = { new BitMatrix2D("0000000"),
