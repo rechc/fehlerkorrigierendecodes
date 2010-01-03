@@ -13,6 +13,7 @@ public class BlockCode {
     BitMatrix2D hMat;
     BitMatrix2D[] syndroms1Bit;
     BitMatrix2D[] syndroms2Bit;
+    BitMatrix2D[] codewords;
     int minHemmingDist;
 
     public BlockCode(String generatorMatrix) {
@@ -138,5 +139,41 @@ public class BlockCode {
             }
         }
         return minDist;
+    }
+
+    public String getGMatAsString(){
+        return gMat.toString();
+    }
+
+    public String getHMatAsString(){
+        return hMat.toString();
+    }
+
+    public int getMinHemmingDist(){
+        return minHemmingDist;
+    }
+
+    public String getSyndroms1BitAsString(){
+        StringBuffer sb = new StringBuffer();
+        for(BitMatrix2D syndrom : syndroms1Bit){
+            sb.append(syndrom).append("\n");
+        }
+        return sb.toString();
+    }
+
+    public String getSyndroms2BitAsString(){
+        StringBuffer sb = new StringBuffer();
+        for(BitMatrix2D syndrom : syndroms2Bit){
+            sb.append(syndrom).append("\n");
+        }
+        return sb.toString();
+    }
+
+    public String getCodewordsAsString(){
+        StringBuffer sb = new StringBuffer();
+        for(BitMatrix2D codeword : codewords){
+            sb.append(codeword).append("\n");
+        }
+        return sb.toString();
     }
 }
