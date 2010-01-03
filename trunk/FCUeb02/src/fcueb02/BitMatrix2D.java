@@ -292,9 +292,15 @@ public class BitMatrix2D {
      */
     public void changeBit(int n){
         if (this.isColumnVektor())
-            this.array[0][n] &= false;
+            if (this.array[0][n] == false)
+                this.array[0][n] = true;
+            else
+                this.array[0][n] = false;
         else
-            this.array[n][0] &= false;
+            if (this.array[n][0] == false)
+                this.array[n][0] = true;
+            else
+                this.array[n][0] = false;
     }
 
     public boolean isNullVector() {
