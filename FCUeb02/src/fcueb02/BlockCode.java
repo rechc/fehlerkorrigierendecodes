@@ -70,16 +70,13 @@ public class BlockCode {
      */
     public BitMatrix2D[] calcCodewords() {
         final int ROWS = gMat.getROWS();
-        final int COLS = gMat.getCOLUMNS();
         int dim = (int) Math.pow(ROWS, 2) - 1;
-        
         BitMatrix2D[] result = new BitMatrix2D[dim];
 
         for (int i = 0; i < dim; i++) {
             BitMatrix2D bm = BitMatrix2D.createBinVector(i, ROWS);
             result[i] = bm.multiplyWith(gMat);
         }
-
         return result;
     }
 
