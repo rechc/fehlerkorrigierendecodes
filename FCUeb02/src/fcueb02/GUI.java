@@ -68,9 +68,9 @@ public class GUI extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         codeWoerter = new javax.swing.JTextArea();
         jPanel2 = new javax.swing.JPanel();
-        checkWord = new javax.swing.JTextField();
         checkButton = new javax.swing.JButton();
         checkWordResult = new javax.swing.JLabel();
+        checkListe = new javax.swing.JComboBox();
         jMenuBar1 = new javax.swing.JMenuBar();
         javax.swing.JMenu fileMenu = new javax.swing.JMenu();
         javax.swing.JMenuItem exitMenuItem = new javax.swing.JMenuItem();
@@ -191,10 +191,6 @@ public class GUI extends javax.swing.JFrame {
 
         jPanel2.setName("jPanel2"); // NOI18N
 
-        checkWord.setText(resourceMap.getString("checkWord.text")); // NOI18N
-        checkWord.setToolTipText(resourceMap.getString("checkWord.toolTipText")); // NOI18N
-        checkWord.setName("checkWord"); // NOI18N
-
         checkButton.setText(resourceMap.getString("checkButton.text")); // NOI18N
         checkButton.setEnabled(false);
         checkButton.setName("checkButton"); // NOI18N
@@ -208,27 +204,31 @@ public class GUI extends javax.swing.JFrame {
         checkWordResult.setText(resourceMap.getString("checkWordResult.text")); // NOI18N
         checkWordResult.setName("checkWordResult"); // NOI18N
 
+        checkListe.setEditable(true);
+        checkListe.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " " }));
+        checkListe.setName("checkListe"); // NOI18N
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(checkWordResult, javax.swing.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE)
+                .addGap(18, 18, 18))
+            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(35, 35, 35)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(checkButton)
-                    .addComponent(checkWord, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(checkWordResult, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
-                .addGap(18, 18, 18))
+                    .addComponent(checkListe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(checkButton))
+                .addGap(112, 112, 112))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(68, 68, 68)
-                .addComponent(checkWord, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(47, 47, 47)
+                .addComponent(checkListe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39)
                 .addComponent(checkButton)
                 .addGap(32, 32, 32)
                 .addComponent(checkWordResult, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -299,6 +299,15 @@ public class GUI extends javax.swing.JFrame {
             this.zweiBitSyndrome.setText(bc.getSyndroms2BitAsString());
             this.codeWoerter.setText(bc.getCodewordsAsString());
             this.hamming.setText("min Hammingdistance: " + bc.getMinHemmingDist());
+          
+          // nicht schoen geloest funzt aber so^^
+          String[] words = bc.getCodewordsAsString().split("\\n");
+          for (int i = 0; i < words.length; i++){
+              String text = words[i].replaceAll(",", "");
+                this.checkListe.addItem(text);
+                text = "";
+          }
+
             this.checkButton.setEnabled(true);
         }
     }//GEN-LAST:event_calcButtonActionPerformed
@@ -308,7 +317,7 @@ public class GUI extends javax.swing.JFrame {
      * @param evt
      */
     private void checkButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkButtonActionPerformed
-        String word = this.checkWord.getText().trim();
+        String word = (String) this.checkListe.getSelectedItem();
         if(!word.matches("[01]{7}")){
             JOptionPane.showMessageDialog(this, ERROR_WRONGINPUT, ERROR_TITLE, JOptionPane.ERROR_MESSAGE);
         }else{
@@ -338,7 +347,7 @@ public class GUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton calcButton;
     private javax.swing.JButton checkButton;
-    private javax.swing.JTextField checkWord;
+    private javax.swing.JComboBox checkListe;
     private javax.swing.JLabel checkWordResult;
     private javax.swing.JTextArea codeWoerter;
     private javax.swing.JTextArea einBitSyndrome;
