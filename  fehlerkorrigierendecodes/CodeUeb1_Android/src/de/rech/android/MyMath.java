@@ -1,6 +1,7 @@
 package de.rech.android;
 import java.util.LinkedList;
 
+import android.R;
 import android.app.Activity;
 import android.os.Bundle;
 import android.content.Intent;
