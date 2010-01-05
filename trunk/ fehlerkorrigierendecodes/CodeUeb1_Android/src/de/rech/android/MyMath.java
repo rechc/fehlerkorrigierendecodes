@@ -3,6 +3,16 @@ import java.util.LinkedList;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.content.Intent;
+import android.view.ContextMenu;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ContextMenu.ContextMenuInfo;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+
 
 
 public class MyMath extends Activity {
@@ -14,6 +24,41 @@ public class MyMath extends Activity {
 		super.onCreate(icicle);
 		setContentView(R.layout.main);
 		
+	   String number_widget29 =
+			((TextView) findViewById(R.id.widget29)).getText().toString();
+	   String gf_widget30 =
+		   ((TextView) findViewById(R.id.widget29)).getText().toString();
+
+	   
+	   final int gf = Integer.parseInt(number_widget29);
+	   final int number = Integer.parseInt(gf_widget30);
+		
+//		final int[] number = new int[] {R.id.widget29};
+//	   final int[] gf = new int[] {R.id.widget30};
+	   
+	    Button calcButton = 
+	        (Button) findViewById(R.id.widget28);
+	      calcButton.setOnClickListener(
+
+	    	        new View.OnClickListener() { public void onClick (View v){multInvText(number, gf); }});     
+	}
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu){
+	    super.onCreateOptionsMenu(menu);
+	    
+		menu.add(Menu.NONE, 0, 0, "Exit");
+	      //menu.add(Menu.NONE, 1, 1, "Settings");
+	      //menu.add(Menu.NONE, 2, 2, "Other");
+	      return true;
+	}
+	
+	public boolean onOptionsItemSelected(MenuItem item){
+	    switch (item.getItemId()) {
+	    case 0:
+	        finish();
+	    }
+	    return false;
 	}
 	
 	public void onAction(){
