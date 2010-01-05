@@ -6,13 +6,12 @@
 		xmlns:android="http://schemas.android.com/apk/res/android"
 		package="de.rech.android">
 	<Button
-		android:id="@+id/widget28"
 		android:layout_width="109px"
 		android:layout_height="42px"
 		android:text="Calc"
 		android:layout_x="93px"
 		android:layout_y="16px"
-	>
+	android:id="@+id/widget28">
 	</Button>
 	<EditText
 		android:id="@+id/widget29"
