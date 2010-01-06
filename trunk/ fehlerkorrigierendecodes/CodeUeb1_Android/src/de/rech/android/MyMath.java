@@ -1,7 +1,6 @@
 package de.rech.android;
 import java.util.LinkedList;
 
-import android.R;
 import android.app.Activity;
 import android.os.Bundle;
 import android.content.Intent;
@@ -24,6 +23,7 @@ public class MyMath extends Activity {
 	public void onCreate(Bundle icicle){
 		super.onCreate(icicle);
 		setContentView(R.layout.main);
+
 		
 	   String number_widget29 =
 			((TextView) findViewById(R.id.widget29)).getText().toString();
@@ -35,7 +35,7 @@ public class MyMath extends Activity {
 	   final int number = Integer.parseInt(gf_widget30);
 		
 //		final int[] number = new int[] {R.id.widget29};
-//	   final int[] gf = new int[] {R.id.widget30};
+//	   final int[] gf = new int[] {R.id.widget30}; 
 	   
 	    Button calcButton = 
 	        (Button) findViewById(R.id.widget28);
