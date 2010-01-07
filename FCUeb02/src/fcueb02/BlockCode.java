@@ -16,7 +16,7 @@ public class BlockCode {
     BitMatrix2D[] codewords;
     int minHemmingDist;
 
-    public BlockCode(String generatorMatrix) {
+    public BlockCode(String generatorMatrix) throws IsNoVectorException {
         gMat = new BitMatrix2D(generatorMatrix);
         hMat = calcHMat(this.gMat);
         codewords = calcCodewords();
@@ -37,7 +37,7 @@ public class BlockCode {
         BitMatrix2D checkWord = new BitMatrix2D(word);
         BitMatrix2D result = hMat.multiplyWith(checkWord.transpose());
 
-        if (!this.checkWord(result)) {
+        if (!result.isNullVector()) {
             syndroms = calcSyndroms1Bit(hMat);
 
             for (int i = 0; i < syndroms.length; i++) {
@@ -47,10 +47,12 @@ public class BlockCode {
                 }
             }
         }
-        return null; //bei toString passiert nichts, weil Wert hier null ist
+        return checkWord.toString();
     }
 
-    public boolean checkWord(BitMatrix2D result) {
+    public boolean isCorrectWord(String word) {
+        BitMatrix2D checkWord = new BitMatrix2D(word);
+        BitMatrix2D result = hMat.multiplyWith(checkWord.transpose());
         return result.isNullVector();
     }
 
@@ -123,22 +125,17 @@ public class BlockCode {
      * Berechnet die minimale Hemmingdistanz
      * @return
      */
-    private int calcMinHemmingDistance() {
-        int minDist = codewords[0].getCOLUMNS();
-        int currentDist = 0;
-        for (int i = 0; i < codewords.length - 1; i++) {
-            for (int j = i + 1; j < codewords.length; j++) {
-                try {
-                    currentDist = codewords[i].hammingDistance(codewords[j]);
-                    if(minDist > currentDist)
-                        minDist = currentDist;
-                } catch (IsNoVectorException ex) {
-                    Logger.getLogger(BlockCode.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
+    private int calcMinHemmingDistance() throws IsNoVectorException {
+        int minDist = 0;
+        int weight = codewords[0].getCOLUMNS();
+        for(BitMatrix2D bm : codewords){
+           weight = bm.getVectorWeight();
+           if (weight < minDist)
+               minDist = weight;
         }
         return minDist;
     }
+
 
     public String getGMatAsString(){
         return gMat.toString();
