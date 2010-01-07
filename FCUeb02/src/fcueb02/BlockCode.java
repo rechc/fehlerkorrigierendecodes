@@ -69,7 +69,7 @@ public class BlockCode {
      */
     public BitMatrix2D[] calcCodewords() {
         final int ROWS = gMat.getROWS();
-        int dim = (int) Math.pow(ROWS, 2) - 1;
+        int dim = (int) Math.pow(ROWS, 2);
         BitMatrix2D[] result = new BitMatrix2D[dim];
 
         for (int i = 0; i < dim; i++) {
@@ -123,11 +123,12 @@ public class BlockCode {
      * @return
      */
     private int calcMinHemmingDistance() {
-        int minDist = 0;
-        int weight = codewords[0].getCOLUMNS();
+        int minDist = codewords[0].getCOLUMNS();
+        int weight = minDist;
         for(BitMatrix2D bm : codewords){
-           try{
-               weight = bm.getVectorWeight();
+            try{
+                if(!bm.isNullVector())
+                    weight = bm.getVectorWeight();
            }catch(Exception e){
                e.printStackTrace();
            }
