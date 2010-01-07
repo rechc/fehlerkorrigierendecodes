@@ -1,8 +1,5 @@
 package fcueb02;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 /**
  *
  * @author Christian Rech, Tim Bartsch
@@ -16,7 +13,7 @@ public class BlockCode {
     BitMatrix2D[] codewords;
     int minHemmingDist;
 
-    public BlockCode(String generatorMatrix) throws IsNoVectorException {
+    public BlockCode(String generatorMatrix) {
         gMat = new BitMatrix2D(generatorMatrix);
         hMat = calcHMat(this.gMat);
         codewords = calcCodewords();
@@ -125,11 +122,15 @@ public class BlockCode {
      * Berechnet die minimale Hemmingdistanz
      * @return
      */
-    private int calcMinHemmingDistance() throws IsNoVectorException {
+    private int calcMinHemmingDistance() {
         int minDist = 0;
         int weight = codewords[0].getCOLUMNS();
         for(BitMatrix2D bm : codewords){
-           weight = bm.getVectorWeight();
+           try{
+               weight = bm.getVectorWeight();
+           }catch(Exception e){
+               e.printStackTrace();
+           }
            if (weight < minDist)
                minDist = weight;
         }
