@@ -355,6 +355,25 @@ public class BitMatrix2D {
         return res;
     }
 
+    public int getVectorWeight() throws IsNoVectorException {
+        if (!this.isColumnVector() || !this.isRowVector())
+            throw new IsNoVectorException();
+
+        int high = 0;
+        if(this.isRowVector()){
+            for (int i = 0; i < this.COLUMNS; i++) {
+                if(this.array[0][i] == true)
+                     high++;
+            }
+        }else{
+            for (int i = 0; i < this.ROWS; i++) {
+                if(this.array[i][0] == true)
+                     high++;
+            }
+        }
+        return  high;
+    }
+
     /**
      * toString Methode - gibt Matrix als String aus
      * @return
