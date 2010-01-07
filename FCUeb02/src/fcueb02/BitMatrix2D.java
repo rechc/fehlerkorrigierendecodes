@@ -337,7 +337,7 @@ public class BitMatrix2D {
      * @throws IsNoVectorException
      */
     public int hammingDistance(BitMatrix2D bm) throws IsNoVectorException{
-        if(!(this.getROWS() == bm.getROWS() && this.getCOLUMNS() == bm.getCOLUMNS()))
+        if((this.isColumnVector() && bm.isColumnVector()) || (this.isRowVector() && bm.isRowVector()))
             throw new IsNoVectorException();
         
         int res = 0;
@@ -355,8 +355,13 @@ public class BitMatrix2D {
         return res;
     }
 
+    /**
+     * Berechnet das vector gewicht
+     * @return
+     * @throws IsNoVectorException
+     */
     public int getVectorWeight() throws IsNoVectorException {
-        if (!this.isColumnVector() || !this.isRowVector())
+        if (!(this.isColumnVector() || this.isRowVector()))
             throw new IsNoVectorException();
 
         int high = 0;
