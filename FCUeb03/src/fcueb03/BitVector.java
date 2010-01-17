@@ -12,7 +12,9 @@ package fcueb03;
 public class BitVector {
     
     //attribute
-boolean[] vector;
+    boolean[] vector;
+    int n;
+    int k;
 
     /**
      * Konstruktor - erstellt leeres boolean array
@@ -28,6 +30,7 @@ boolean[] vector;
      * @param bv
      * @return
      */
+    //Methode wird glaube ich nicht benoetigt
     public BitVector addition(BitVector bv){
         for (int i = 0; i < vector.length; i++) {
            ;
@@ -53,6 +56,29 @@ boolean[] vector;
         return result;
     }
 
+    /**
+     * Test ob Vector ein Codewort ist
+     * @return
+     */
+    public boolean isCodeword(BitVector bv){
+        return isDivisible(bv);
+    }
+
+
+    /**
+     * Test auf teilbarkeit
+     * @param bv
+     * @return
+     */
+    private  boolean isDivisible(BitVector bv){
+        BitVector result = divide(bv);
+
+	for (int i = 0; i < result.vector.length; i++)
+            if (result.vector[i])
+			return false;
+
+	return true;
+   }
     
 
     /**
@@ -70,14 +96,56 @@ boolean[] vector;
         return result;
     }
 
+    /**
+     * Test ob Codewort zyklisch ist
+     * @return
+     */
+    public boolean isCyclic() {
+        return true; //isDivisible
+    }
+
+    /**
+     * toString Methode
+     * @return
+     */
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Polynom:\n");
+
+        for (int i = vector.length - 1; i >= 0; i--)
+            if (vector[i]) {
+                sb.append('x');
+                sb.append("^" + i); //<-- i darf nur werte von aufgewählten checkboxen bekommen.
+            }
+
+        sb.append(" erzeugt ");
+
+        if (!isCyclic())
+            sb.append('k');
+
+        sb.append("einen zyklischen Code");
+
+        return sb.toString();
+    }
 
     //------------------[getter & setter]---------->
 
     /**
      * Setter um vector mit werten zu fuellen
      */
-    public void setVector(){
+    public void setVector(boolean[] vec){
+        // sollte noch getestet werden ob vec genausolange wie vector
+        for (int i = 0; i < vec.length; i++)
+           vector[i] = vec[i];
+    }
 
+    public int getK(){
+        return k;
+    }
+
+    public int getN(){
+        return n;
     }
 
 }
