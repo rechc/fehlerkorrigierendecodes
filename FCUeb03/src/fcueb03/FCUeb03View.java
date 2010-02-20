@@ -15,11 +15,15 @@ import javax.swing.Timer;
 import javax.swing.Icon;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  * The application's main frame.
  */
-public class FCUeb03View extends FrameView {
+public class FCUeb03View extends javax.swing.JFrame { //extends FrameView,
+
+    private final static String ERROR_WRONGINPUT = "Falsche Eingabe";
+    private final static String ERROR_TITLE = "error";
 
     public FCUeb03View(SingleFrameApplication app) {
         super(app);
@@ -102,41 +106,97 @@ public class FCUeb03View extends FrameView {
 
         mainPanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        jTextFieldNsize = new javax.swing.JTextField();
+        jTextFieldPsize = new javax.swing.JTextField();
+        jTextFieldN = new javax.swing.JTextField();
+        jTextFieldP = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextPane1 = new javax.swing.JTextPane();
+        jButtonOK = new javax.swing.JButton();
         menuBar = new javax.swing.JMenuBar();
         javax.swing.JMenu fileMenu = new javax.swing.JMenu();
         javax.swing.JMenuItem exitMenuItem = new javax.swing.JMenuItem();
         javax.swing.JMenu helpMenu = new javax.swing.JMenu();
         javax.swing.JMenuItem aboutMenuItem = new javax.swing.JMenuItem();
-        statusPanel = new javax.swing.JPanel();
-        javax.swing.JSeparator statusPanelSeparator = new javax.swing.JSeparator();
-        statusMessageLabel = new javax.swing.JLabel();
-        statusAnimationLabel = new javax.swing.JLabel();
-        progressBar = new javax.swing.JProgressBar();
 
         mainPanel.setName("mainPanel"); // NOI18N
 
         jLabel1.setName("jLabel1"); // NOI18N
+
+        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(fcueb03.FCUeb03App.class).getContext().getResourceMap(FCUeb03View.class);
+        jTextFieldNsize.setText(resourceMap.getString("jTextFieldNsize.text")); // NOI18N
+        jTextFieldNsize.setName("jTextFieldNsize"); // NOI18N
+
+        jTextFieldPsize.setText(resourceMap.getString("jTextFieldPsize.text")); // NOI18N
+        jTextFieldPsize.setName("jTextFieldPsize"); // NOI18N
+
+        jTextFieldN.setText(resourceMap.getString("jTextFieldN.text")); // NOI18N
+        jTextFieldN.setName("jTextFieldN"); // NOI18N
+
+        jTextFieldP.setText(resourceMap.getString("jTextFieldP.text")); // NOI18N
+        jTextFieldP.setName("jTextFieldP"); // NOI18N
+
+        jScrollPane1.setName("jScrollPane1"); // NOI18N
+
+        jTextPane1.setName("jTextPane1"); // NOI18N
+        jScrollPane1.setViewportView(jTextPane1);
+
+        jButtonOK.setText(resourceMap.getString("jButtonOK.text")); // NOI18N
+        jButtonOK.setName("jButtonOK"); // NOI18N
+        jButtonOK.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonOKActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
         mainPanelLayout.setHorizontalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(mainPanelLayout.createSequentialGroup()
-                .addGap(103, 103, 103)
-                .addComponent(jLabel1)
-                .addContainerGap(297, Short.MAX_VALUE))
+                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(mainPanelLayout.createSequentialGroup()
+                        .addGap(103, 103, 103)
+                        .addComponent(jLabel1))
+                    .addGroup(mainPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextFieldPsize, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldNsize, 0, 0, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jTextFieldP)
+                            .addComponent(jTextFieldN, javax.swing.GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonOK, javax.swing.GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE))
+                    .addGroup(mainPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(mainPanelLayout.createSequentialGroup()
-                .addGap(104, 104, 104)
-                .addComponent(jLabel1)
-                .addContainerGap(150, Short.MAX_VALUE))
+                .addGap(26, 26, 26)
+                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(mainPanelLayout.createSequentialGroup()
+                        .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jTextFieldN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldNsize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextFieldPsize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(20, 20, 20)
+                        .addComponent(jLabel1))
+                    .addComponent(jButtonOK, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         menuBar.setName("menuBar"); // NOI18N
 
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(fcueb03.FCUeb03App.class).getContext().getResourceMap(FCUeb03View.class);
         fileMenu.setText(resourceMap.getString("fileMenu.text")); // NOI18N
         fileMenu.setName("fileMenu"); // NOI18N
 
@@ -156,57 +216,37 @@ public class FCUeb03View extends FrameView {
 
         menuBar.add(helpMenu);
 
-        statusPanel.setName("statusPanel"); // NOI18N
-
-        statusPanelSeparator.setName("statusPanelSeparator"); // NOI18N
-
-        statusMessageLabel.setName("statusMessageLabel"); // NOI18N
-
-        statusAnimationLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        statusAnimationLabel.setName("statusAnimationLabel"); // NOI18N
-
-        progressBar.setName("progressBar"); // NOI18N
-
-        javax.swing.GroupLayout statusPanelLayout = new javax.swing.GroupLayout(statusPanel);
-        statusPanel.setLayout(statusPanelLayout);
-        statusPanelLayout.setHorizontalGroup(
-            statusPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(statusPanelSeparator, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
-            .addGroup(statusPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(statusMessageLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 230, Short.MAX_VALUE)
-                .addComponent(progressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(statusAnimationLabel)
-                .addContainerGap())
-        );
-        statusPanelLayout.setVerticalGroup(
-            statusPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(statusPanelLayout.createSequentialGroup()
-                .addComponent(statusPanelSeparator, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(statusPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(statusMessageLabel)
-                    .addComponent(statusAnimationLabel)
-                    .addComponent(progressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(3, 3, 3))
-        );
-
         setComponent(mainPanel);
         setMenuBar(menuBar);
-        setStatusBar(statusPanel);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOKActionPerformed
+        check();
+
+        String nField = jTextFieldN.getText().trim();
+        String pField = jTextFieldP.getText().trim();
+
+        Polynomial nPol = new Polynomial(nField);
+        Polynomial pPol = new Polynomial(pField);
+
+       boolean isCodeWord = nPol.isCodeWordOf(pPol);
+       
+       if(isCodeWord)
+        this.jTextPane1.setText(pField + " ist ein Codewort");
+    }//GEN-LAST:event_jButtonOKActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonOK;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField jTextFieldN;
+    private javax.swing.JTextField jTextFieldNsize;
+    private javax.swing.JTextField jTextFieldP;
+    private javax.swing.JTextField jTextFieldPsize;
+    private javax.swing.JTextPane jTextPane1;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JMenuBar menuBar;
-    private javax.swing.JProgressBar progressBar;
-    private javax.swing.JLabel statusAnimationLabel;
-    private javax.swing.JLabel statusMessageLabel;
-    private javax.swing.JPanel statusPanel;
     // End of variables declaration//GEN-END:variables
 
     private final Timer messageTimer;
@@ -216,4 +256,42 @@ public class FCUeb03View extends FrameView {
     private int busyIconIndex = 0;
 
     private JDialog aboutBox;
+
+    private void check() {
+        //throw new UnsupportedOperationException("Not yet implemented");
+        int nSize = 9;
+        int pSize = 9;
+        boolean fehler = false;
+        String nField = jTextFieldN.getText().trim();
+        String pField = jTextFieldP.getText().trim();
+        
+        //test ob nSize und pSize eine Zahl ist
+        if (validateNumber(this.jTextFieldNsize.getText().trim()) && 
+            validateNumber(this.jTextFieldPsize.getText().trim())){
+             fehler = true;
+        } else {
+            nSize = Integer.parseInt(this.jTextFieldNsize.getText().trim());
+            pSize = Integer.parseInt(this.jTextFieldPsize.getText().trim());
+        }
+
+        //test ob nField und pField korrekt sind
+        if(!nField.matches("[01]{"+ nSize +"}"))
+            fehler = true;
+        else if(!pField.matches("[01]{"+ pSize +"}"))
+            fehler = true;
+        else if ((nSize - pSize) < 1)
+            fehler = true;
+
+        if (fehler)
+            JOptionPane.showMessageDialog(this, ERROR_WRONGINPUT, ERROR_TITLE, JOptionPane.ERROR_MESSAGE);
+    }
+
+     public static boolean validateNumber(String num) {
+        try {
+            Integer.parseInt(num);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
 }
